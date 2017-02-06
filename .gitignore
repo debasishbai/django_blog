@@ -1,3 +1,6 @@
 
 .idea/
 venv/
+mysite/__init__.pyc
+mysite/settings.pyc
+mysite/urls.pyc
