@@ -20,24 +20,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
     try:
-        return os.environ(var_name)
+        return os.environ[var_name]
     except KeyError:
-        error_msg = "Set the %s environment variable" %var_name
+        error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
 
-blog_db_pass = get_env_variable("BLOG_DB_PASS")
+BLOG_DB_PASS = get_env_variable("BLOG_DB_PASS")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = get_env_variable("SECRET_KEY_BLOG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com']
 
 
 # Application definition
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog',
         'USER': 'postgres',
-        'PASSWORD': blog_db_pass,
+        'PASSWORD': BLOG_DB_PASS,
         'HOST': 'localhost',
         'PORT': '5432',
     }
