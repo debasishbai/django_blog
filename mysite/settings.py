@@ -37,7 +37,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY_BLOG")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', ".herokuapp.com"]
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', "*"]
 
 
 # Application definition
