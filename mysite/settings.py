@@ -26,13 +26,14 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 
-BLOG_DB_PASS = get_env_variable("BLOG_DB_PASS")
+#BLOG_DB_PASS = get_env_variable("BLOG_DB_PASS")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable("SECRET_KEY_BLOG")
+SECRET_KEY = "b(w5#i5+up5p&%t7i%mfahr^h8c(x3l9244q75-(-ctv1@4l11"
+#get_env_variable("SECRET_KEY_BLOG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog',
         'USER': 'postgres',
-        'PASSWORD': BLOG_DB_PASS,
+        'PASSWORD': "cheeks",
         'HOST': 'localhost',
         'PORT': '5432',
     }
