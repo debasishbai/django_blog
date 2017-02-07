@@ -12,3 +12,5 @@ blog/migrations/0001_initial.pyc
 blog/migrations/0002_auto_20170206_2109.pyc
 blog/migrations/__init__.pyc
 blog/models.pyc
+blog/urls.pyc
+blog/views.pyc
