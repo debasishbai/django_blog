@@ -14,3 +14,4 @@ blog/migrations/__init__.pyc
 blog/models.pyc
 blog/urls.pyc
 blog/views.pyc
+blog/forms.pyc
