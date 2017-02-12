@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views
+from django.contrib.auth.models import User
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SignUpForm
 
 
 def post_list(request):
@@ -33,23 +35,6 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect("post_list")
-
-
-@login_required()
-def post_new(request):
-
-    if request.method == "POST":
-        form = PostForm(request.POST)
-
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            # post.published_date = timezone.now()
-            post.save()
-            return redirect("post_detail", pk=post.pk)
-    else:
-        form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
 
 
 @login_required()
@@ -95,3 +80,44 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('post_detail', pk=post_pk)
+
+
+@login_required()
+def post_new(request):
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            # post.published_date = timezone.now()
+            post.save()
+            return redirect("post_detail", pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def sign_up(request):
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password_2"]
+            email_address = form.cleaned_data["email_address"]
+            user = User(username=username, email=email_address)
+            user.set_password(password)
+            user.save()
+            return render(request, "registration/success.html", {})
+
+    else:
+        form = SignUpForm()
+    return render(request, "registration/sign_up.html", {'form': form})
+
+
+def success(request):
+    return redirect("post_list")
+

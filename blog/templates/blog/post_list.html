@@ -7,7 +7,7 @@
                 <p>Published: {{ post.published_date }}</p>
             </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+            <a class="btn btn-default" href="{% url 'post_detail' pk=post.pk %}">Comments</a>
         </div>
     {% endfor %}
 {% endblock %}

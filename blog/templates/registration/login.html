@@ -7,7 +7,7 @@
 
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <table>
+        <table class="table">
             <tr>
                 <td>{{ form.username.label_tag }}</td>
                 <td>{{ form.username }}</td>
@@ -16,9 +16,22 @@
                 <td>{{ form.password.label_tag }}</td>
                 <td>{{ form.password }}</td>
             </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Login" class="btn btn-default">
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <a class="btn btn-default" href="{% url 'sign_up' %}">Sign Up</a>
+                </td>
+                <td>
+                    <p><a href="{% url 'password_reset' %}">Forgot password</a></p>
+                </td>
+            </tr>
         </table>
 
-        <input type="submit" value="login"/>
-        <input type="hidden" name="next" value="{{ next }}"/>
+
     </form>
+    <div>
+    </div>
+    <div>
+    </div>
 {% endblock %}

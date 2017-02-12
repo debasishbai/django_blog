@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="alert alert-success" role="alert">
+        Registration completed successfully!
+    </div>
+    <div>
+        <a href="{% url 'post_list' %}">Go to homepage</a>
+    </div>
+{% endblock %}
