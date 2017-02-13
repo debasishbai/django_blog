@@ -10,28 +10,28 @@
         {% csrf_token %}
         <table class="table">
             <tr>
-                <td>{{ form.username.label_tag }}</td>
+                <td><p>{{ form.username.label_tag }}</p></td>
                 <td>{{ form.username }}</td>
                 <td>{{ form.username.errors }}</td>
             </tr>
             <tr>
-                <td><strong>Password:</strong></td>
+                <td><p><strong>Password:</strong></p></td>
                 <td>{{ form.password_1 }}</td>
                 <td>{{ form.password_1.errors }}</td>
             </tr>
             <tr>
-                <td><strong>Confirm Password:</strong></td>
+                <td><p><strong>Confirm Password:</strong></p></td>
                 <td>{{ form.password_2}}</td>
                 <td>{{ form.password_2.errors }}</td>
             </tr>
             <tr>
-                <td><strong>Email Id:</strong></td>
+                <td><p><strong>Email Id:</strong></p></td>
                 <td>{{ form.email_address }}</td>
                 <td>{{ form.email_address.errors }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Sign Up" class="btn btn-default"></td>
+                <td><p><input type="submit" value="Sign Up" class="btn btn-default"></p></td>
             </tr>
         </table>
     </form>

@@ -16,7 +16,7 @@
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <h4>{{ post.text | linebreaksbr }}</h4>
+        <p>{{ post.text | linebreaksbr }}</p>
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
