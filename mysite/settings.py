@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from django.core.exceptions import ImproperlyConfigured
-# import dj_database_url
-#
-# DATABASES = {'default': dj_database_url.config()}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,18 +25,42 @@ def get_env_variable(var_name):
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
-
-#BLOG_DB_PASS = get_env_variable("BLOG_DB_PASS")
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "b(w5#i5+up5p&%t7i%mfahr^h8c(x3l9244q75-(-ctv1@4l11"
-#get_env_variable("SECRET_KEY_BLOG")
+
+# Get ENV VARIABLES key
+BLOG_DB_PASS = get_env_variable("BLOG_DB_PASS")
+ENV_ROLE = get_env_variable("ENV_ROLE")
+EMAIL_USER = get_env_variable("EMAIL_HOST_USER")
+EMAIL_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD")
+SECRET_KEY = get_env_variable("SECRET_KEY_BLOG")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+if ENV_ROLE == "production":
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
+    DEBUG = False
+
+
+# Database
+# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
+if ENV_ROLE == "development":
+    DEBUG = True
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'blog',
+            'USER': 'postgres',
+            'PASSWORD': BLOG_DB_PASS,
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -89,20 +110,6 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/'
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog',
-        'USER': 'postgres',
-        'PASSWORD': "cheeks",
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -145,9 +152,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = "25"
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = EMAIL_USER
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
