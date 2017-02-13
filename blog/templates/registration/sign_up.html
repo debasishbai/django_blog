@@ -1,9 +1,16 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
+
+    <div class="post">
+        <h1>Sign up</h1>
+    </div>
+=======
     <!--{% if form.errors %}-->
         <!--<p>Invalid email_id</p>-->
     <!--{% endif %}-->
+>>>>>>> fd66cd80ec7094ff37a6344bd17bdf5429fd1e07
 
     <form method="POST" action="{% url 'sign_up' %}">
         {% csrf_token %}

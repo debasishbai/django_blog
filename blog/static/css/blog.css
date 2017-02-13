@@ -1,6 +1,6 @@
-h2 a {
-    color: #C9203C  ;
-    font-family: 'Lobster';
+.post h2 a, .post h1 {
+    color: #C9203C;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
 .page-header {
@@ -13,18 +13,20 @@ h2 a {
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
+    font-family: 'Lobster', cursive;
 }
 
 .content {
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
+h1, h3,{
     font-family: 'Lobster', cursive;
 }
 
 .date {
-    color: #828282;
+    color: #9A9FA1;
+
 }
 
 .save {
@@ -52,4 +54,12 @@ h1, h2, h3, h4 {
 
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+.post h4 {
+font-family: 'Bitter', serif;
+}
+
+p {
+font-family: "Bitter", serif;
 }

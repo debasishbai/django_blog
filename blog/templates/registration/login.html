@@ -1,10 +1,9 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    {% if form.errors %}
-        <p>Your username and/or password didn't match. Please try again.</p>
-    {% endif %}
-
+    <div class="post">
+        <h1>Log In</h1>
+    </div>
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <table class="table">
@@ -27,11 +26,16 @@
                 </td>
             </tr>
         </table>
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> fd66cd80ec7094ff37a6344bd17bdf5429fd1e07
     </form>
     <div>
     </div>
     <div>
     </div>
 {% endblock %}
+
+
