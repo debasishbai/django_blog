@@ -21,15 +21,11 @@
                     <input type="hidden" name="next" value="{{ next }}"/>
                     <a class="btn btn-default" href="{% url 'sign_up' %}">Sign Up</a></p>
                 </td>
-                <td>
-                    <p><a href="{% url 'password_reset' %}">Forgot password</a></p>
-                </td>
             </tr>
         </table>
     </form>
-    <div>
-    </div>
-    <div>
+    <div style="padding:0px 0px 0px 235px">
+        <p><a href="{% url 'password_reset' %}">Forgot password</a></p>
     </div>
 {% endblock %}
 

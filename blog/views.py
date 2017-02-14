@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views
 from django.contrib.auth.models import User
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, SignUpForm
@@ -19,8 +18,13 @@ def post_detail(request, pk):
 
 @login_required()
 def post_draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by("creation_date")
-    return render(request, "blog/post_draft_list.html", {"posts": posts})
+    user = request.user
+    if user.is_staff:
+        posts = Post.objects.filter(published_date__isnull=True).order_by("creation_date")
+        return render(request, "blog/post_draft_list.html", {"posts": posts})
+    else:
+        posts = Post.objects.filter(published_date__isnull=True, author=user).order_by("creation_date")
+        return render(request, "blog/post_draft_list.html", {"posts": posts})
 
 
 @login_required()
@@ -91,6 +95,7 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            # Disabling the published date so that all the new posts will not get published unless approved.
             # post.published_date = timezone.now()
             post.save()
             return redirect("post_detail", pk=post.pk)

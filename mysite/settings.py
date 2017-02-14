@@ -44,7 +44,6 @@ if ENV_ROLE == "production":
     DATABASES = {'default': dj_database_url.config()}
     DEBUG = False
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
