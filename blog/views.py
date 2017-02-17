@@ -2,6 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, SignUpForm
 
@@ -105,7 +110,6 @@ def post_new(request):
 
 
 def sign_up(request):
-
     if request.method == "POST":
         form = SignUpForm(request.POST)
 
@@ -120,9 +124,22 @@ def sign_up(request):
 
     else:
         form = SignUpForm()
-    return render(request, "registration/sign_up.html", {'form': form})
+
+    return render(request, "registration/sign_up.html", {"form": form})
 
 
 def success(request):
     return redirect("post_list")
 
+
+@receiver(post_save, sender=User)
+def send_email_to_new_user(sender, instance, created, **kwargs):
+    if created:
+        name = User.get_username(instance)
+        email_address = User.objects.values_list("email").get(username=name)
+        subject = "Welcome to Django Boys"
+        html_content = render_to_string('registration/welcome_email.html', {'username': name})
+        text_content = strip_tags(html_content)
+        message = EmailMultiAlternatives(subject=subject, body=text_content, to=email_address)
+        message.attach_alternative(html_content, "text/html")
+        message.send(fail_silently=False)

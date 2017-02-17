@@ -6,28 +6,34 @@
         <h1>Sign up</h1>
     </div>
 
+    {% if not form.is_valid %}
+    <span class="text-danger" style="text-align:center; font-size:16px;">
+        <strong>{{ form.non_field_errors }}</strong>
+    </span>
+    {% endif %}
+
     <form method="POST" action="{% url 'sign_up' %}">
         {% csrf_token %}
         <table class="table">
             <tr>
                 <td><p>{{ form.username.label_tag }}</p></td>
                 <td>{{ form.username }}</td>
-                <td>{{ form.username.errors }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td><p><strong>Password:</strong></p></td>
                 <td>{{ form.password_1 }}</td>
-                <td>{{ form.password_1.errors }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td><p><strong>Confirm Password:</strong></p></td>
                 <td>{{ form.password_2}}</td>
-                <td>{{ form.password_2.errors }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td><p><strong>Email Id:</strong></p></td>
                 <td>{{ form.email_address }}</td>
-                <td>{{ form.email_address.errors }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td></td>

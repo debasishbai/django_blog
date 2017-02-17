@@ -14,7 +14,7 @@
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span> Delete Post</a>
         {% elif post.published_date %}
             <div class="date">
-                <p>By: {{ post.author }}, {{ post.published_date }}</p>
+                <p>Posted by: <strong>{{ post.author }}</strong> on {{ post.published_date|date:'F d, Y' }}</p>
             </div>
         {% elif user.is_authenticated %}
             <div class="alert alert-info" role="alert">
@@ -27,20 +27,15 @@
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+
     {% for comment in post.comments.all %}
-        {% if user.is_authenticated or comment.approved_comment %}
         <div class="comment">
-            <div class="date">
-                {{ comment.created_date }}
-                {% if not comment.approved_comment %}
-                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-                {% endif %}
-            </div>
-            <p>by:<strong> {{ comment.author }} </strong>, on {{ comment.creation_date }}</p>
+            {% if user.is_staff %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+            {% endif %}
+            <p>By:<strong> {{ comment.author }} </strong>, on {{ comment.creation_date }}</p>
             <p>{{ comment.text|linebreaks }}</p>
         </div>
-        {% endif %}
     {% empty %}
         <p>No comments here yet :(</p>
     {% endfor %}

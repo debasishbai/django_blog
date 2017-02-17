@@ -40,8 +40,9 @@ h1, h3,{
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;
-    font-size: 26pt;
+    font-size: 18pt;
     margin-right: 20px;
+
 }
 
 .post {
@@ -62,4 +63,9 @@ font-family: 'Bitter', serif;
 
 p {
 font-family: "Bitter", serif;
+}
+
+.notice h1 {
+font-family: 'Bitter', serif;
+
 }

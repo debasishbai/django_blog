@@ -3,11 +3,10 @@
 {% block content %}
     {% for post in posts %}
         <div class="post">
-            <div class="date">
-                <p>By: {{ post.author }}, {{ post.published_date }}</p>
-            </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <a class="btn btn-default" href="{% url 'post_detail' pk=post.pk %}">Comments</a>
+            <div class="date">
+                <p>Posted by: <strong>{{ post.author }}</strong> on {{ post.published_date|date:'F d, Y' }}</p>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

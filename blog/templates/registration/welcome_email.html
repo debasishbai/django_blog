@@ -1,0 +1,15 @@
+{% autoescape on %}
+
+<p style="font-size:30px; font-family:verdana, sans-serif; color:green; text-align:center;"><strong>Greetings from Django Boys</strong></p>
+<br>
+<div style="position:relative; font-family:verdana, sans-serif; top:20px;">
+    <p style="font-size:15px;"><strong>Hola {{ username }},</strong></p><br>
+    <p style="font-size:15px;">Thank you for signing up with us. We look forward to having an awesome post from you.</p><br>
+    <p style="font-size:15px;"><a href="https://debasishbai.herokuapp.com/accounts/login/" >Login now</a> to start writing.</p>
+</div>
+<br><br>
+<div style="position:bottomleft;">
+    <p style="font-family:verdana, sans-serif; font-size:13px;"><strong><em>The Django Boys team.</em></strong></p>
+</div>
+
+{% endautoescape %}

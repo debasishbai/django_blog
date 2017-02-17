@@ -4,6 +4,13 @@
     <div class="post">
         <h1>Log In</h1>
     </div>
+
+    {% if not form.is_valid %}
+    <span class="text-danger" style="text-align:center; font-size:16px;">
+        <strong>{{ form.non_field_errors }}</strong>
+    </span>
+    {% endif %}
+
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <table class="table">
@@ -17,15 +24,17 @@
             </tr>
             <tr>
                 <td></td>
-                <td><p><input type="submit" value="Login" class="btn btn-default">
-                    <input type="hidden" name="next" value="{{ next }}"/>
-                    <a class="btn btn-default" href="{% url 'sign_up' %}">Sign Up</a></p>
+                <td>
+                    <p><input type="submit" value="Login" class="btn btn-default">
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    <a class="btn btn-default" href="{% url 'sign_up' %}" style="position:relative; right:-20px;">Sign Up</a></p>
                 </td>
             </tr>
         </table>
     </form>
-    <div style="padding:0px 0px 0px 235px">
-        <p><a href="{% url 'password_reset' %}">Forgot password</a></p>
+    <div class="row">
+      <div class="col-xs-6 col-md-4"></div>
+      <div class="col-xs-4 col-md-4" style="position:relative; top:-10px; right:-20px;"><p><a href="{% url 'password_reset' %}">Forgot password</a></p></div>
     </div>
 {% endblock %}
 
