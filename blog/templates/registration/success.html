@@ -3,8 +3,9 @@
 {% block content %}
 
     <div class="alert alert-success" role="alert">
-        <h3>Registration completed successfully :)</h3>
+        <h3>{{ greetings }} successfully :)</h3>
     </div>
-    <p><a href="{% url 'post_list' %}">Go to homepage</a></p>
+    <p style="font-size:18px;">{{ response }}</p><br>
+    <p style="font-size:16px;"><a href="{% url 'post_list' %}">Go to homepage</a></p>
 
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <div class="post" >
+        <h1>Contact us</h1>
+    </div>
+
+    {% if not form.is_valid %}
+        <span class="text-danger" style="text-align:center; font-size:16px;">
+            <strong>{{ form.non_field_errors }}</strong>
+        </span>
+    {% endif %}
+
+    <form method="POST" action="{% url 'contact_us' %}">
+        {% csrf_token %}
+        <table class="table">
+            <tr>
+                <td><p><strong>Name:</strong></p></td>
+                <td>{{ form.name }}</td>
+            </tr>
+            <tr>
+                <td><p><strong>Email address:</strong></p></td>
+                <td>{{ form.email_address }}</td>
+            </tr>
+            <tr>
+                <td><p><strong>Message:</strong></p></td>
+                <td>{{ form.message }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p style="position:relative; top:10px;"><input type="submit" value="Submit" class="btn btn-default"></p></td>
+            </tr>
+        </table>
+    </form>
+
+{% endblock %}

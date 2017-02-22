@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% for post in posts %}
-                <div class="post">
+                <div class="post" style="padding: 0px 100px 0px 70px;">
                     <ul>
                         <li>
                             <p class="date">By {{ post.author }} on {{ post.creation_date }}</p>
@@ -11,13 +11,21 @@
                         </li>
                     </ul>
                 </div>
-        {% empty %}
-            <span class="text-danger" style="height:50%; width:90%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; ">
-                <b>Nothing's in here yet!</b>
+    {% empty %}
+        {% if user.is_staff %}
+        <div class="post">
+            <span class="text-info" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; ">
+            <b>No post to review!</b>
             </span>
-            <div style="height:85%; width:90%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:20px;">
-                <p>Come back here once you write a new post.</p>
+        {% else %}
+            <span class="text-danger" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; ">
+                <b>Nothing's here yet!</b>
+            </span>
+            <div style="height:75%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center;">
+                <p style="font-size: 20px;">Come back once you save a new post.</p>
             </div>
-            {% endfor %}
+        </div>
         {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

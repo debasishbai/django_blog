@@ -24,7 +24,7 @@ urlpatterns = [
     url(r"", include("blog.urls")),
     url(r"^accounts/login/$", views.login, name="login"),
     url(r"^accounts/logout/$", views.logout, name="logout", kwargs={"next_page": "/"}),
-    url(r'^accounts/password/reset/$', views.password_reset, {"template_name": "registration/password_reset_form1.html"}, name="password_reset"),
+    url(r'^accounts/password/reset/$', views.password_reset, {"template_name": "registration/password_reset_form1.html", "html_email_template_name": "registration/password_reset_email1.html"}, name="password_reset"),
     url(r'^accounts/password/reset/done/$', views.password_reset_done, {"template_name": "registration/password_reset_done1.html"}, name="password_reset_done"),
     url(r'^accounts/password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.password_reset_confirm, {"template_name": "registration/password_reset_confirm1.html"}, name="password_reset_confirm"),
     url(r'^accounts/password/done/$', views.password_reset_complete, {"template_name": 'registration/password_reset_complete1.html'}, name="password_reset_complete"),

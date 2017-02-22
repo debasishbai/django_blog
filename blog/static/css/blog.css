@@ -1,12 +1,21 @@
-.post h2 a, .post h1 {
-    color: #C9203C;
-    font-family: 'Ropa Sans', sans-serif;
+.post h2 a, .post h1
+{
+    color: #8F0707;
+    font-family: 'Roboto', serif;
+    text-decoration: none;
+
+}
+
+.post h2 a:hover, .post h2 a:focus
+{
+    color: #1D2E8C;
+    text-decoration: none;
 }
 
 .page-header {
-    background-color: #218003;
+    background-color: #026910;
     margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    padding: 20px 30px 20px 60px;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -17,7 +26,7 @@
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 50px;
 }
 
 h1, h3,{
@@ -40,13 +49,17 @@ h1, h3,{
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;
-    font-size: 18pt;
+    font-size: 14pt;
     margin-right: 20px;
 
 }
 
-.post {
-    margin-bottom: 70px;
+.base-menu, .base-menu:hover, .base-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 14pt;
+    margin-right: 50px;
+    margin-top:-20px;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -62,10 +75,15 @@ font-family: 'Bitter', serif;
 }
 
 p {
-font-family: "Bitter", serif;
+    font-family: "Bitter", serif;
+    font-size: 15px;
 }
 
 .notice h1 {
 font-family: 'Bitter', serif;
 
+}
+
+.post {
+    margin-bottom: 70px;
 }

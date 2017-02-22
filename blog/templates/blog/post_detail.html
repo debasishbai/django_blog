@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <div class="post">
+    <div class="post" style="padding: 0px 100px 0px 70px;">
         {% if user.is_staff %}
             {% if post.published_date %}
                 <div class="date">
@@ -18,12 +18,12 @@
             </div>
         {% elif user.is_authenticated %}
             <div class="alert alert-info" role="alert">
-                <h3>Your post is under review and will be published shortly.<br>
+                <h3>Your post is under review and will be published shortly,
                     Thank you.</h3>
             </div>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text | linebreaksbr }}</p>
+        <p style="font-family: 'Lora', serif; font-size: 20px;">{{ post.text | linebreaksbr }}</p>
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>

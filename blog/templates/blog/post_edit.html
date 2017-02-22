@@ -2,8 +2,21 @@
 
 {% block content %}
     <h1>New Post</h1>
-    <form method="POST" class="post-from">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+    <form method="POST" action="{% url 'post_new' %}">
+        {% csrf_token %}
+        <table class="table">
+            <tr>
+                <td><strong>Title:</strong></td>
+                <td>{{ form.title }}</td>
+            </tr>
+            <tr>
+                <td><strong>Text:</strong></td>
+                <td>{{ form.text }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p style="position:relative; top:10px;"><input type="submit" value="Submit" class="btn btn-default"></p></td>
+            </tr>
+        </table>
     </form>
 {% endblock %}

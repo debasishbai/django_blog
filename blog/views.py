@@ -8,11 +8,11 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .models import Post, Comment
-from .forms import PostForm, CommentForm, SignUpForm
+from .forms import PostForm, CommentForm, SignUpForm, ContactUsForm
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by("published_date")
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by("-published_date")
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
@@ -112,7 +112,8 @@ def post_new(request):
 def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
-
+        greetings = "Registration completed"
+        response = ""
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password_2"]
@@ -120,7 +121,7 @@ def sign_up(request):
             user = User(username=username, email=email_address)
             user.set_password(password)
             user.save()
-            return render(request, "registration/success.html", {})
+            return render(request, "registration/success.html", {"greetings": greetings, "response": response})
 
     else:
         form = SignUpForm()
@@ -132,14 +133,38 @@ def success(request):
     return redirect("post_list")
 
 
+def contact_us(request):
+
+    if request.method == "POST":
+        form = ContactUsForm(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email_address = form.cleaned_data["email_address"]
+            body = form.cleaned_data["message"]
+            subject = "Django Boys Contact This User!"
+            to_email_address = User.objects.values_list("email").get(is_superuser=True)
+            message = EmailMultiAlternatives(subject=subject, body=body, to=to_email_address, from_email=(name, email_address))
+            message.send(fail_silently=False)
+            greetings = "Form submitted"
+            response = "I will get back to you within 24 hours."
+            return render(request, "registration/success.html", {"greetings": greetings, "response": response})
+
+    else:
+        form = ContactUsForm()
+
+    return render(request, "registration/contact_us.html", {"form": form})
+
+
 @receiver(post_save, sender=User)
 def send_email_to_new_user(sender, instance, created, **kwargs):
     if created:
         name = User.get_username(instance)
         email_address = User.objects.values_list("email").get(username=name)
         subject = "Welcome to Django Boys"
+        team_name = "Django Boys Team"
         html_content = render_to_string('registration/welcome_email.html', {'username': name})
         text_content = strip_tags(html_content)
-        message = EmailMultiAlternatives(subject=subject, body=text_content, to=email_address)
+        message = EmailMultiAlternatives(subject=subject, body=text_content, to=email_address, bcc=["bai.debasish123@gmail.com"], from_email=(team_name))
         message.attach_alternative(html_content, "text/html")
         message.send(fail_silently=False)
