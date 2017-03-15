@@ -16,3 +16,4 @@ blog/urls.pyc
 blog/views.pyc
 blog/forms.pyc
 blog/migrations/0003_comment.pyc
+blog/migrations/0004_auto_20170314_2057.pyc

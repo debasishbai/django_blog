@@ -1,0 +1,554 @@
+log.py : 2017-03-15 16:54 INFO Scrapy 1.3.2 started (bot: news)
+log.py : 2017-03-15 16:54 INFO Overridden settings: {'NEWSPIDER_MODULE': 'news.spiders', 'SPIDER_MODULES': ['news.spiders'], 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'news'}
+middleware.py : 2017-03-15 16:54 INFO Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+middleware.py : 2017-03-15 16:54 INFO Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+middleware.py : 2017-03-15 16:54 INFO Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+middleware.py : 2017-03-15 16:54 INFO Enabled item pipelines:
+['scrapy.pipelines.files.FilesPipeline', 'news.pipelines.NewsPipeline']
+engine.py : 2017-03-15 16:54 INFO Spider opened
+logstats.py : 2017-03-15 16:54 INFO Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+telnet.py : 2017-03-15 16:54 DEBUG Telnet console listening on 127.0.0.1:6023
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/robots.txt> (referer: None)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/> (referer: None)
+dupefilters.py : 2017-03-15 16:54 DEBUG Filtered duplicate request: <GET http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/evms-or-paper-ballot/polls/57644390.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://www.gadgetsnow.com/robots.txt> (referer: None)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://pubads.g.doubleclick.net/robots.txt> (referer: None)
+robotstxt.py : 2017-03-15 16:54 DEBUG Forbidden by robots.txt: <GET http://pubads.g.doubleclick.net/gampad/clk?id=120939579&iu=/7176/TOI/TOI_HP_CLK_TKR/TOI_HP_AirAsia_ADVT_CLK>
+robotstxt.py : 2017-03-15 16:54 DEBUG Forbidden by robots.txt: <GET http://pubads.g.doubleclick.net/gampad/clk?id=120937539&iu=/7176/TOI/7edge_TOI_ClkTrckr_1x1>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://www.gadgetsnow.com/slideshows/iit-placements-28-companies-blacklisted-by-iits/photolist/57635800.cms?utm_source=toiweb&utm_medium=referral&utm_campaign=toiweb_hptopnews> (referer: http://timesofindia.indiatimes.com/)
+scraper.py : 2017-03-15 16:54 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/evms-or-paper-ballot/polls/57644390.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 42, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+scraper.py : 2017-03-15 16:54 ERROR Spider error processing <GET http://www.gadgetsnow.com/slideshows/iit-placements-28-companies-blacklisted-by-iits/photolist/57635800.cms?utm_source=toiweb&utm_medium=referral&utm_campaign=toiweb_hptopnews> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 42, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/sports/cricket/australia-in-india/india-v-australia-virat-kohli-has-no-regrets-over-australia-bust-up/articleshow/57646601.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/city/kolkata/parents-give-higher-secondary-exam-alongside-son/articleshow/57647176.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/assembly-elections/manipur/news/bjps-n-biren-singh-sworn-in-as-chief-minister-of-manipur/articleshow/57647374.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/auto/cars/automakers-put-india-in-top-gear-five-major-car-launches-in-march/articleshow/57645612.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/assembly-elections/uttar-pradesh/news/bjp-to-select-up-cm-with-2019-ls-elections-in-mind/articleshow/57641800.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/sports/cricket/news/shashank-manohar-steps-down-as-icc-chairman/articleshow/57646490.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/world/rest-of-world/taiwan-says-chinese-military-threat-grows-us-regional-strategy-unclear/articleshow/57646420.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/world/pakistan/pakistani-girl-congratulates-pm-modi-for-up-victory-calls-for-turning-focus-on-peace/articleshow/57642107.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/toisa/toisa2017nominations.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/india/tvf-founder-arunabh-kumar-accused-of-sexual-harassment-10-developments/articleshow/57649079.cms> (referer: http://timesofindia.indiatimes.com/)
+scraper.py : 2017-03-15 16:54 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/toisa/toisa2017nominations.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 42, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+scraper.py : 2017-03-15 16:54 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/india/tvf-founder-arunabh-kumar-accused-of-sexual-harassment-10-developments/articleshow/57649079.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 42, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/india/iaf-sukhoi-30-aircraft-crashes-in-barmer-pilots-safe/articleshow/57648856.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms> (referer: http://timesofindia.indiatimes.com/)
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/sports/cricket/australia-in-india/india-v-australia-virat-kohli-has-no-regrets-over-australia-bust-up/articleshow/57646601.cms>
+{'date': '2017-03-15 13:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg'],
+ 'files': [{'checksum': 'd92829df737efee1f373395617a08451',
+            'path': '90140a61ae77d9f03161e2e507093dd973cb15c7.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg'}],
+ 'story': u'RANCHI: Indian skipper Virat Kohli said he had no regrets over a war of words with his Australian counterpart Steve Smith as the two sides prepare to resume their bitter battle for Test supremacy.\nKohli\'s explosive accusation after the second Test that Smith had been systematically abusing the Decision Review System (DRS) plunged the often tense relations between the two teams back into crisis mode.\nAustralia\'s board responded by calling the accusation "outrageous", prompting an equally vigorous defence of Kohli from his own employers.\nAlthough both Smith and Kohli escaped punishment from the International Cricket Council, they were summoned to clear-the-air talks ahead of the third Test which begins in Ranchi on Thursday.\nSpeaking to reporters on the eve of the match on Wednesday, Kohli said his focus was now on the cricket but he refused to back down on his claims against Smith.\n"I don\'t regret anything that I have said but at the same time it\'s very important not to be stupid and go on about the same thing on a daily basis," said Kohli.\n"I think it was a mature decision on everyone\'s part to move on.\nWe have seen instances in the past stretch on too long -- it just causes disharmony and there is no outcome to it.\n"It\'s time we focus on the remainder of the series.\nThere\'s a lot of cricket to be played and it should not happen in bad taste." India were furious when Smith was spotted looking up at his dressing-room for guidance in Bangalore on whether to seek a review of the umpire\'s decision after being given out lbw -- a clear breach of the DRS rules.\nWhile Smith called the incident on the fourth and final day a one-off "brain fade", Kohli said that "it\'s been happening for the last three days and it has to stop".\nIndia and Australia, the top two-ranked teams in Test cricket, have often been at loggerheads and relations hit a low point in 2008 when Indian spinner Harbhajan Singh was accused of calling Andrew Symonds a monkey.\nKohli himself was fined 50 percent of his match fee three years ago for bringing the game into disrepute after flashing the middle finger to the crowd in the Sydney Test.',
+ 'title': u"India v Australia: Virat Kohli has 'no regrets' over Australia bust-up"}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/assembly-elections/manipur/news/bjps-n-biren-singh-sworn-in-as-chief-minister-of-manipur/articleshow/57647374.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg'],
+ 'files': [{'checksum': '1cadc17c291886eb235d5d3da56e2fd2',
+            'path': '5196e39d2bb82bbac4931a7e9855989ee3a6508b.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg'}],
+ 'story': u"NEW DELHI: Ending 15 years of Congress rule in Manipur, BJP leader Nongthombam Biren Singh was sworn in as the state's chief minister in Imphal today.\nY Joykumar Singh of the National People's Party was sworn in as the deputy chief minister at the Raj Bhawan in Imphal.\nYesterday, Manipur governor Najma Heptulla had invited Singh, who was unanimously elected the leader of the 21-member BJP legislature party, to form the government.\nThis is the first time the BJP has come to power in the north-eastern state.\nThe invitation to Singh came after four members of the Naga People's Front, an NDA ally, met the governor and declared their support to BJP for government formation.\nManipur threw up a hung verdict in the state assembly election.\nWhile Congress emerged as the single largest party with 28 seats, the BJP came in at second place with 21 seats.\nThe saffron party, led by Biren Singh, was to quick to stake claim to form the government with the support of 32 MLAs in the 60-member assembly.",
+ 'title': u"BJP's N Biren Singh sworn in as chief minister of Manipur"}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/auto/cars/automakers-put-india-in-top-gear-five-major-car-launches-in-march/articleshow/57645612.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg'],
+ 'files': [{'checksum': '2555cdd309a0881c54e4576f9fde1aa8',
+            'path': 'e5ccf82dd74c8157391278d13b0cf4b76c9e2611.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg'}],
+ 'story': u"Major automakers are pulling out all stops to attract buyers towards their showroom this month.\nA slew of cars have either been or are scheduled to be launched and the following are some of the major highlights.\nMaruti Suzuki Baleno RS Photo courtesy: Nexa Experience One of the most anticipated cars of 2017, the Baleno RS created a big buzz when launched on March 3 at a price of Rs 8.69 lakh (ex-showroom Delhi).\nOffered only in petrol variant for now, the Baleno RS has a 1.0-litre, three-cylinder Boosterjet combustion chamber which belts out 102PS of power and 150Nm of torque.\nThe feature list includes 16-inch black alloy wheels, day-time running LEDs, projector headlamps, disc brakes on all four wheels, automatic headlamps, SmartPlay infotainment system with Apple CarPlay and built-in GPS navigation, voice command system, reverse parking sensors with a camera, push start/stop with smart key, automatic climate control, ABS and dual airbags.\nClick here for full details.\nRenault Kwid Climber TNN Photo The Kwid has been a success story for the French in India.\nLooking to build upon it, Renault launched the Kwid Climber - first showcased at the 2016 Indian Auto Expo - on March 9 at an introductory price of Rs 4.3 lakh (ex showroom, Delhi).\nOffered in 1.0-litre SCe (Smart Control efficiency) and a a five-speed AMT version - called Easy-R Gear Box, the Kwid Climber has several visual changes which include bumper overrriders, front and rear terrain protectors with orange accents, two tone arching roof bars, side-door protection cladding and a higher ground clearance than the original model.\nClick here for full details.\nTata Motors Tigor Photo under permission from gims.swiss Tata Motors made has grabbed several headlines at the ongoing Geneva Motor Show.\nWhile its first sportscar - RACEMO - is the cornerstone here, the company also showcased the Tigor - scheduled for an India launch on March 29.\nThe petrol versipon of the car will be powered by a 1.2-litre Revotron engine while a 1.05-litre Revotron motor will be inside the diesel variant.\nAn option between five-speed manual and an automatic transmission will also be offered.\nPronounced Tee-Gaur, the compact sedan will lock horns with Maruti Suzuki DZire, Honda Amaze and Ford Aspire.\nReports suggest Tata will undercut competition with its pricing for Tigor.\nHonda WR-V Photo courtesy hondacarindia.com After introducing the 2017 edition of Honda City, the Japanese auto giant is betting big with crossover vehicle WR-V.\nWhile based on the Jazz platform, the sub-four meter WR-V is taller and has a better ground clearance to tackle Indian roads.\nThe car has ABS with EBD and dual airbags as standard while much like the new City, is expected to be packed with gizmoz.\nIt will be offered in options of a 1.2-litre petrol and 1.5-litre diesel engines.\nIndia will be the first global market of the production-ready car and it will be officially launched tomorrow (March 16).\nLamborghini Aventador S TNN Photo For those looking to stand out from the crowd - and have Rs 5.01 crore, the Italian auto giant raced in the Aventador S on March 3.\nThe Aventador S supercar made its way to India only in the coupe form and features the same 6.5-litre, naturally aspirated V12 engine that powered its predecessor.\nThe engine for the Aventador S is returned to produce 740PS of power and 690Nm of torque.\nThat's 10PS less than the SV trim but 40PS more than the car it replaces - the standard Aventador.\nClick here for full details.",
+ 'title': u'Automakers put India in top gear: Five major car launches in March'}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/assembly-elections/uttar-pradesh/news/bjp-to-select-up-cm-with-2019-ls-elections-in-mind/articleshow/57641800.cms>
+{'date': '2017-03-15 10:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg'],
+ 'files': [{'checksum': '5768ca4f88136248737ee15ce1a5a8eb',
+            'path': 'a3bdfc6ceaf94fceffb042613094ec2d7a0ddd64.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg'}],
+ 'story': u'LUCKNOW: Development of UP+ in the run up to the 2019 Lok Sabha elections will be one of the biggest criterion for BJP leaders while choosing the CM for the state.\nA decision is likely to be taken only after the floor test at Goa+ and Manipur is over, sources told TOI.\nWhile several names are doing the rounds for the post, sources said the party will first reach consensus on characteristics required in the incumbent, including a perfect caste combination and age.\nThe new CM is likely to be a face that appeals to the youth and has a progressive outlook.\n"Since, BJP has a thumping majority of 325 MLAs, it has no compulsion to select the candidate from a particular caste of region.\nIt can go for a person who can take forward its development agenda, keeping 2019 elections in mind," said a political observer.\nBJP chief Amit Shah to pick UP, Uttarakahand chief ministersShah is likely to announce his choices based on the findings of observers being sent to the two states to sound out party MLAs.\nFor all practical purposes, Shah along with PM Modi, will decide who will be the CMs of politically pivotal Uttar Pradesh and neighbouring Uttarakahand.\nThe names doing the rounds include minister of state for railways Manoj Sinha, Union home minister Rajnath Singh, state BJP chief Keshav Prasad Maurya and firebrand MP Yogi Adityanath.\nBJP\'s UP in charge for elections Om Mathur said no decision had been taken yet as party leadership was focusing on the situation in Goa and Manipur.\nUrban development and I&B minister Venkaiah Naidu and BJP general secretary Bhupendra Yadav have been appointed observers for the election of the CM.',
+ 'title': u'BJP to select UP CM with 2019 Lok Sabha elections in mind'}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/sports/cricket/news/shashank-manohar-steps-down-as-icc-chairman/articleshow/57646490.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg'],
+ 'files': [{'checksum': '1029fa45da759026d52e831a60e3729c',
+            'path': 'da7496dbc2e0d91d67a79e76ed9bfddedc0a11a4.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg'}],
+ 'story': u'DUBAI: In a surprise development, Shashank Manohar today resigned as ICC chairman after merely eight months in office citing personal reasons.\nThe 59-year-old Manohar mailed his resignation letter to ICC CEO Dave Richardson without clarifying the exact reason for this sudden move to end what was to be a two-year-tenure.\nHowever, according to highly-placed sources Manohar has decided to quit as BCCI seems to have gained enough ground to block the constitutional and financial reforms that were set to be passed by the ICC at its next board meeting.\nAny reform to be passed needs 2/3rd majority but BCCI, in all likelihood, has managed to get Bangladesh, Sri Lanka and Zimbabwe on its side.\nIt is learnt, expecting a loss of face, Manohar has resigned with immediate effect.\n"I was elected unopposed as the first independent Chairman of ICC last year.\nI have tried to do my best and have tried to be fair and impartial in deciding matters in the functioning of the Board and in matters related to Member Boards along with the able support of all Directors," Manohar has stated in his resignation letter.\n"However, for personal reasons it is not possible for me to hold the august office of ICC Chairman and hence I am tendering my resignation as Chairman with immediate effect.\n"I take this opportunity to thank all the Directors, the Management and staff of ICC for supporting me wholeheartedly.\nI wish ICC all the very best and hope it achieves greater heights," he concluded.\nManohar had last year resigned from the BCCI citing his inability to carry out Lodha Committee reforms in toto.\nHis detractors in BCCI at that time had said he left a sinking ship for the safer confines of the ICC.\nHe became the first independent chairman of ICC but had several run ins with BCCI on revenue sharing pattern.\nThe BCCI officials believe that for his personal ambitions to head the ICC, Manohar had not cared about the BCCI\'s interests.\nHis decision to bring in constitutional reforms has been severely opposed by BCCI along with Sri Lanka.\nThe ICC said it has received Manohar\'s resignation and will comment after taking stock of the situation.\n"The ICC has confirmed it has received an email from Chairman Shashank Manohar tendering his resignation.\nThe ICC Board will assess the situation and next steps before making a further announcement," the world body stated in a brief press release.',
+ 'title': u'Shashank Manohar steps down as ICC chairman'}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/world/rest-of-world/taiwan-says-chinese-military-threat-grows-us-regional-strategy-unclear/articleshow/57646420.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg'],
+ 'files': [{'checksum': '54f9bc60ddf122457273e0021d2fad60',
+            'path': '644935bb4e6a6f95e5d0d592d7d0fe16d5a97296.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg'}],
+ 'story': u'China\'s accelerated military development and recent activity by its military aircraft+ and ships around Taiwan pose an increased threat to the self-ruled island, according to a Taiwanese government defence report draft reviewed by Reuters.\nThe 2017 Quadrennial Defence Review (QDR) also highlights the uncertainty over the future strategic direction of the United States in the region, the impact of Japan flexing its military capabilities and "conflict crisis" potential in the disputed South China Sea.\n"The recent activity of Chinese jets and ships around Taiwan shows the continued rise in (China\'s) military threat capabilities," highlighting the importance of Taiwan\'s need to defend itself, the review will say.\n"In addition to posing a military threat to our country, it also has a negative impact on regional stability." The document is due to be presented to parliament on Thursday by Taiwan defence minister Feng Shih-kuan.\nThe defence ministry had no comment on the report on Wednesday.\nThe four-yearly review is the first since President Tsai Ing-wen took office last May and the first under her Democratic Progressive Party, which traditionally advocates independence for Taiwan.\n"The country\'s military development and Taiwan\'s freedom and prosperity are the same living body," according to the draft.\nWAYWARD PROVINCE The QDR comes as China - which claims Taiwan as a wayward province to be taken back by force if necessary - has been stepping up air and sea military exercises in waters surrounding Taiwan as part of a sweeping modernisation of its armed forces.\nSpeaking in Beijing at his annual news conference on Wednesday, Chinese Premier Li Keqiang repeated that China was resolutely opposed to Taiwan independence but it would uphold peace across the Taiwan Strait.\n"No matter how the situation on the island may evolve, the fraternal bond between the two sides cannot be severed and will not be able to change history or the fact that both sides belong to one and the same China," Li said.\nDevelopments in the South China Sea, including rejection of an international court ruling by other claimants on territorial rights of the Philippines in the disputed waters, China\'s land reclamation and militarisation, and freedom of navigation patrols championed by the United States, could deepen strife in the area, the review will say.\n"Sovereignty disputes in the region and strategic competition could intensify, leading to hidden conflict crisis." China has begun new construction work on a disputed island in the South China Sea, satellite images show, just days ahead of the first official visit to the region by U.S.\nSecretary of State Rex Tillerson.\nThe review also listed Japan\'s move away from its pacifist constitution "to strengthen its armaments and lift a ban on using troops abroad" as having deep and far-reaching impacts on the security situation in the Asia-Pacific and the Taiwan Strait.\nReuters reported this week that Japan plans to send its largest warship on a three-month tour through the South China Sea beginning in May - its biggest show of naval force in the region since World War Two.\nAmong security challenges for Taiwan, the review also said "the United States\' Asia-Pacific strategic direction and troop deployment was not clear" under the new administration of President Donald Trump.\nTrump provoked consternation in Beijing by taking a congratulatory call from Taiwan\'s Tsai and then calling into question adherence to the "One China" policy, under which Washington acknowledges the Chinese position that there is only one China and Taiwan is part of it.\nLast month, Trump agreed to honour the policy during a phone call with Chinese leader Xi Jinping.\nThe United States remains Taiwan\'s biggest ally and arms supplier and is bound by legislation to provide the means to help the island defend itself.\nThe review reflected the realities of Taiwan\'s situation, but wasn\'t specific enough on how Tsai\'s government will address budget needs for major indigenous defence programmes or the shrinking number of soldiers in the armed forces, said Chieh Chung, a research fellow in the national security division of Taiwan\'s National Policy Foundation, a local think tank.\nThe review affirmed Taiwan\'s push to develop and build its own submarines, jets and ships, and strengthen its electronic and cyber defences against China.',
+ 'title': u'Taiwan says Chinese military threat grows, US regional strategy unclear'}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/world/pakistan/pakistani-girl-congratulates-pm-modi-for-up-victory-calls-for-turning-focus-on-peace/articleshow/57642107.cms>
+{'date': '2017-03-15 15:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg'],
+ 'files': [{'checksum': 'c0fb25a249eacfeaab0c9314541b86af',
+            'path': 'd293d9c6ffa7b77822e3be7953e5a49bd0201657.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg'}],
+ 'story': u'ISLAMABAD: Congratulating Prime Minister Narendra Modi for the Bharatiya Janata Party\'s (BJP) historic mandate+ in the Uttar Pradesh Assembly Elections, an eleven year old Pakistani school girl wrote to him saying that he should now focus towards winning more hearts of Indians and Pakistanis alike, by becoming a bridge of peace between the two nations.\nIn her letter, Aqeedat Naveed highlighted on the need for peace between India and Pakistan, and said that Prime Minister Modi can help speed up the process, reports DunyaNews.\n"Once my father told me that winning of hearts is a marvelous job.\nPerhaps you have won the hearts of Indian people, therefore you won the election in UP.\nBut I must tell you if you want to win more Indian and Pakistani hearts, you should take steps towards friendship and peace.\nBoth countries need good relation.\nLet\'s make a peace bridge between India and Pakistan.\nLet\'s decide that we will not buy bullets, will buy books.\nWe will not buy the guns, will buy the medicine for the poor people," Aqeedat wrote in the two page letter.\nPakistan, Bangladesh may feel impact of Uttar Pradesh election resultsThere has been some speculation that the government had been waiting for the UP elections to be over to pick up the threads of engagement with Pakistan, which have gone into deep freeze since the Uri attack.\nShe further emphasized that the choice between peace and conflict lies open for both the nations, and signed off by congratulating the Prime Minister for the UP Polls victory.\nRead this story in Malayalam',
+ 'title': u"Pakistani girl congratulates PM Modi for UP victory, calls for turning focus on 'peace'"}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/city/kolkata/parents-give-higher-secondary-exam-alongside-son/articleshow/57647176.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg'],
+ 'files': [{'checksum': '840b500c2006d061eb6858b9bb273b02',
+            'path': '0c7b84e80752b0494490d40c7f6e13b9e9e20682.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg'}],
+ 'story': u'KOLKATA: The story of Nil Battey Sannata, a film in which a mother who works as a maid joins her daughter in writing the school exams, seems to have crossed over from celluloid into real life.\nBiplab Mondal, a class 12 student at Arongghata Hajrapur School in West Bengal\'s Ranaghat, appeared for the higher secondary examination with his parents.\nBiplab\'s father Balaram is a 43-year-old farmer and his mother Kalyani is a 33-year-old homemaker.\nFor the last few years, the family of three has been diligently preparing for the Higher Secodary exams, with Biplab playing teacher to his parents.\n"I taught my parents.\nThey are weak in English, so one of our neighbours tutored them in the subject," said Biplab.\nBalaram and his wife Kalyani cleared the Madhyamik exam in 2014 and 2015 respectively, before enrolling in Arongghata Hajrapur School.\nBut they say it was not an easy process.\n"When our son cleared Madhyamik, we decided to sit in Higher Secondary exam with our son.\nAs we were old, many schools refused to admit us.\nFinally, we got admission in Arongghata Hajrapur School," Balaram said.\nThe headmaster at the school said he was impressed to see Biplab\'s parents so dedicated to their education, and made sure to pay special attention to them.\nLocal MLA Samir Poddar said, "Those who were forced to leave education can be inspired by this family.\nIf anyone wants to read we are always there to help them." Biplab\'s mother Kalyani said the family got a cycle from the school under the government\'s Sabuj Sathi scheme.\n"The three of us went to school together four days a week.\nSome people made fun of us, but we never took their remarks seriously," Kalyani added.\nBalaram said that he has many educated relatives, and some of them are college professors.\nBut they avoid him and his family because they are lacking in a formal education.\n"They don\'t even keep in touch with us.\nSo I want to show them what we are capable of," Balaram said.\nRead this story in Bangla',
+ 'title': u'Parents give higher secondary exam alongside son'}
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg> referred in <None>
+engine.py : 2017-03-15 16:54 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg> (referer: None)
+files.py : 2017-03-15 16:54 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg> referred in <None>
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/india/iaf-sukhoi-30-aircraft-crashes-in-barmer-pilots-safe/articleshow/57648856.cms>
+{'date': '2017-03-15 16:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg'],
+ 'files': [{'checksum': 'a381b71fc470734a4571c24f92ce69f4',
+            'path': 'a16213cbb774b13d8d5008107dac30a7fede11d5.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg'}],
+ 'story': u'JAISALMER: A Sukhoi-30 MKI fighter aircraft of the Indian Air Force on Wednesday crashed in Shivkar Kudla village in Rajasthan\'s Barmer district, leaving three villagers injured.\nBoth the pilots ejected safely.\n"The Sukhoi aircraft crashed near Barmer while on a routine training sortie.\nBoth the pilots ejected safely," Defence spokesperson Lt Col Manish Ojha said.\nDistrict Collector Sudhir Kumar Sharma while confirming the incident said," A fighter jet crashed near Shivkar village in Sadar police station area and the area has been cordoned off." "Air force and police officials have been rushed to the spot," he added.\nAccording to the Air Force, the jet took off from Jodhpur and after a technical snag crashed in Barmer.\nMeanwhile, fire spread to three hamlets in the vicinity charring some huts but no casualty has been reported.\nThe incident took place after hours after a Chetak helicopter of the Indian Air Force crash landed in Uttar Pradesh, moments after it took off from an airbase on the outskirts of Allahabad this morning.\nNo casualties have been reported, defence officials said.\nLast year, in September, a MiG-21 aircraft had crashed in the same area.',
+ 'title': u'IAF Sukhoi-30 aircraft crashes in Barmer, pilots safe'}
+pipelines.py : 2017-03-15 16:54 INFO **************************************************
+pipelines.py : 2017-03-15 16:54 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 16:54 INFO **Saving to Database**
+scraper.py : 2017-03-15 16:54 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg'],
+ 'files': [{'checksum': 'ad198dfa2aab5816e62462529c12e7c3',
+            'path': 'c2621c052b0da496706aad2005e34b45785c8c9d.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg'}],
+ 'story': u'NEW DELHI: AAP national convenor Arvind Kejriwal today renewed his demand+ for paper ballots in Delhi municipal corporation polls and alleged that faulty Electronic Voting Machines (EVMs) had led to the AAP\'s downfall in the state assembly elections, especially in Punjab+ .\nCiting exit polls which predicted AAP would sweep the Punjab Legislative Assembly election, Kejriwal questioned the outcome+ which was completely contrary to these forecasts.\n"Many said there is anger against Akalis and the AAP is sweeping polls.\nStill, AAP got 25 per cent votes and SAD got 31 per cent, how is this possible?" Kejriwal demanded.\nLaunching a scathing attack against the Congress and the SAD-BJP coalition, Kejriwal claimed that AAP\'s vote share in Punjab had been transferred to rival parties through tampered EVMs.\n"20-25 per cent of AAP\'s vote was transferred to SAD, which is why Congress won the election.\nAkali\'s victory would\'ve made it too obvious.\nThey wanted AAP to lose in any which way," the Delhi chief minister alleged at a press conference here.\nKejriwal then attempted to lend legitimacy to his allegations by referring to the Supreme Court\'s statement on EVMs.\n"Supreme Court has said that EVM is vulnerable to tampering, we aren\'t saying it.\nI know you all will make fun of me, hashtag me.\nBut if EVMs can be tampered with, that would mean the end of democracy in India," he said.\nAdmitting that he accepted the results in Goa, where the AAP had contested polls for the first time, Kejriwal called for a probe into the dubious EVMs.\n"We know it is too late to declare Punjab and Goa elections void, but this is for the future, faith has to be restored in the electoral process.\nThe suspicion of tampered EVMs must be investigated to increase voter confidence," the AAP leader said.\nAfter BSP supremo Mayawati, the Delhi chief minister had questioned the reliability of EVMs after facing a resounding defeat in the Goa assembly polls and finishing in third place in the Punjab election.\nDelhi Congress chief Ajay Maken also threw his weight+ behind Kejriwal\'s anti-electronic voting machine drive.\nKejriwal yesterday directed chief secretary MM Kutty to write to the state election commissioner, asking him to hold the upcoming municipal elections through ballot papers.',
+ 'title': u"20-25% of AAP's votes was transferred to Akalis: Arvind Kejriwal"}
+engine.py : 2017-03-15 16:54 INFO Closing spider (finished)
+statscollectors.py : 2017-03-15 16:54 INFO Dumping Scrapy stats:
+{'downloader/exception_count': 2,
+ 'downloader/exception_type_count/scrapy.exceptions.IgnoreRequest': 2,
+ 'downloader/request_bytes': 9503,
+ 'downloader/request_count': 28,
+ 'downloader/request_method_count/GET': 28,
+ 'downloader/response_bytes': 1006224,
+ 'downloader/response_count': 28,
+ 'downloader/response_status_count/200': 28,
+ 'dupefilter/filtered': 5,
+ 'file_count': 10,
+ 'file_status_count/downloaded': 10,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 3, 15, 11, 24, 47, 795267),
+ 'item_scraped_count': 10,
+ 'log_count/DEBUG': 52,
+ 'log_count/ERROR': 4,
+ 'log_count/INFO': 37,
+ 'request_depth_max': 1,
+ 'response_received_count': 28,
+ 'scheduler/dequeued': 17,
+ 'scheduler/dequeued/memory': 17,
+ 'scheduler/enqueued': 17,
+ 'scheduler/enqueued/memory': 17,
+ 'spider_exceptions/ValueError': 4,
+ 'start_time': datetime.datetime(2017, 3, 15, 11, 24, 45, 965786)}
+engine.py : 2017-03-15 16:54 INFO Spider closed (finished)
+log.py : 2017-03-15 17:01 INFO Scrapy 1.3.2 started (bot: news)
+log.py : 2017-03-15 17:01 INFO Overridden settings: {'NEWSPIDER_MODULE': 'news.spiders', 'SPIDER_MODULES': ['news.spiders'], 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'news'}
+middleware.py : 2017-03-15 17:01 INFO Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+middleware.py : 2017-03-15 17:01 INFO Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+middleware.py : 2017-03-15 17:01 INFO Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+_legacy.py : 2017-03-15 17:01 CRITICAL Unhandled error in Deferred:
+_legacy.py : 2017-03-15 17:01 CRITICAL 
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 1301, in _inlineCallbacks
+    result = g.send(result)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/crawler.py", line 90, in crawl
+    six.reraise(*exc_info)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/crawler.py", line 72, in crawl
+    self.engine = self._create_engine()
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/crawler.py", line 97, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/core/engine.py", line 70, in __init__
+    self.scraper = Scraper(crawler)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/core/scraper.py", line 71, in __init__
+    self.itemproc = itemproc_cls.from_crawler(crawler)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/middleware.py", line 58, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/scrapy/middleware.py", line 40, in from_settings
+    mw = mwcls()
+  File "/home/debasish/django_blog/news/news/pipelines.py", line 20, in __init__
+    self.conn = psycopg2.connect(host="localhost", user="", password="", dbname="")
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: FATAL:  no PostgreSQL user name specified in startup packet
+FATAL:  no PostgreSQL user name specified in startup packet
+
+log.py : 2017-03-15 17:01 INFO Scrapy 1.3.2 started (bot: news)
+log.py : 2017-03-15 17:01 INFO Overridden settings: {'NEWSPIDER_MODULE': 'news.spiders', 'SPIDER_MODULES': ['news.spiders'], 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'news'}
+middleware.py : 2017-03-15 17:01 INFO Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+middleware.py : 2017-03-15 17:01 INFO Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+middleware.py : 2017-03-15 17:01 INFO Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+middleware.py : 2017-03-15 17:01 INFO Enabled item pipelines:
+['scrapy.pipelines.files.FilesPipeline', 'news.pipelines.NewsPipeline']
+engine.py : 2017-03-15 17:01 INFO Spider opened
+logstats.py : 2017-03-15 17:01 INFO Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+telnet.py : 2017-03-15 17:01 DEBUG Telnet console listening on 127.0.0.1:6023
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/robots.txt> (referer: None)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/> (referer: None)
+dupefilters.py : 2017-03-15 17:01 DEBUG Filtered duplicate request: <GET http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/evms-or-paper-ballot/polls/57644390.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://www.gadgetsnow.com/robots.txt> (referer: None)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://www.gadgetsnow.com/slideshows/iit-placements-28-companies-blacklisted-by-iits/photolist/57635800.cms?utm_source=toiweb&utm_medium=referral&utm_campaign=toiweb_hptopnews> (referer: http://timesofindia.indiatimes.com/)
+scraper.py : 2017-03-15 17:01 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/evms-or-paper-ballot/polls/57644390.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 39, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://pubads.g.doubleclick.net/robots.txt> (referer: None)
+robotstxt.py : 2017-03-15 17:01 DEBUG Forbidden by robots.txt: <GET http://pubads.g.doubleclick.net/gampad/clk?id=120939579&iu=/7176/TOI/TOI_HP_CLK_TKR/TOI_HP_AirAsia_ADVT_CLK>
+robotstxt.py : 2017-03-15 17:01 DEBUG Forbidden by robots.txt: <GET http://pubads.g.doubleclick.net/gampad/clk?id=120937539&iu=/7176/TOI/7edge_TOI_ClkTrckr_1x1>
+scraper.py : 2017-03-15 17:01 ERROR Spider error processing <GET http://www.gadgetsnow.com/slideshows/iit-placements-28-companies-blacklisted-by-iits/photolist/57635800.cms?utm_source=toiweb&utm_medium=referral&utm_campaign=toiweb_hptopnews> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 39, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/sports/cricket/australia-in-india/india-v-australia-virat-kohli-has-no-regrets-over-australia-bust-up/articleshow/57646601.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/auto/cars/automakers-put-india-in-top-gear-five-major-car-launches-in-march/articleshow/57645612.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/world/pakistan/pakistani-girl-congratulates-pm-modi-for-up-victory-calls-for-turning-focus-on-peace/articleshow/57642107.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/city/kolkata/parents-give-higher-secondary-exam-alongside-son/articleshow/57647176.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/assembly-elections/uttar-pradesh/news/bjp-to-select-up-cm-with-2019-ls-elections-in-mind/articleshow/57641800.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/world/rest-of-world/taiwan-says-chinese-military-threat-grows-us-regional-strategy-unclear/articleshow/57646420.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/toisa/toisa2017nominations.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/india/tvf-founder-arunabh-kumar-accused-of-sexual-harassment-10-developments/articleshow/57649079.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/assembly-elections/manipur/news/bjps-n-biren-singh-sworn-in-as-chief-minister-of-manipur/articleshow/57647374.cms> (referer: http://timesofindia.indiatimes.com/)
+scraper.py : 2017-03-15 17:01 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/toisa/toisa2017nominations.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 39, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+scraper.py : 2017-03-15 17:01 ERROR Spider error processing <GET http://timesofindia.indiatimes.com/india/tvf-founder-arunabh-kumar-accused-of-sexual-harassment-10-developments/articleshow/57649079.cms> (referer: http://timesofindia.indiatimes.com/)
+Traceback (most recent call last):
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/twisted/internet/defer.py", line 653, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/debasish/django_blog/news/news/spiders/timesnews.py", line 39, in parse_stories
+    pub_date_raw1 = parse(extract_with_css(self.site_name["date"]), fuzzy_with_tokens=True)[0]
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/home/debasish/heroku_apps/debasishbai/venv/local/lib/python2.7/site-packages/dateutil/parser.py", line 562, in parse
+    raise ValueError("String does not contain a date.")
+ValueError: String does not contain a date.
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/sports/cricket/news/shashank-manohar-steps-down-as-icc-chairman/articleshow/57646490.cms> (referer: http://timesofindia.indiatimes.com/)
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/sports/cricket/australia-in-india/india-v-australia-virat-kohli-has-no-regrets-over-australia-bust-up/articleshow/57646601.cms>
+{'date': '2017-03-15 13:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg'],
+ 'files': [{'checksum': 'd92829df737efee1f373395617a08451',
+            'path': '90140a61ae77d9f03161e2e507093dd973cb15c7.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646628,width-400,resizemode-4/57646628.jpg'}],
+ 'story': u'RANCHI: Indian skipper Virat Kohli said he had no regrets over a war of words with his Australian counterpart Steve Smith as the two sides prepare to resume their bitter battle for Test supremacy.\nKohli\'s explosive accusation after the second Test that Smith had been systematically abusing the Decision Review System (DRS) plunged the often tense relations between the two teams back into crisis mode.\nAustralia\'s board responded by calling the accusation "outrageous", prompting an equally vigorous defence of Kohli from his own employers.\nAlthough both Smith and Kohli escaped punishment from the International Cricket Council, they were summoned to clear-the-air talks ahead of the third Test which begins in Ranchi on Thursday.\nSpeaking to reporters on the eve of the match on Wednesday, Kohli said his focus was now on the cricket but he refused to back down on his claims against Smith.\n"I don\'t regret anything that I have said but at the same time it\'s very important not to be stupid and go on about the same thing on a daily basis," said Kohli.\n"I think it was a mature decision on everyone\'s part to move on.\nWe have seen instances in the past stretch on too long -- it just causes disharmony and there is no outcome to it.\n"It\'s time we focus on the remainder of the series.\nThere\'s a lot of cricket to be played and it should not happen in bad taste." India were furious when Smith was spotted looking up at his dressing-room for guidance in Bangalore on whether to seek a review of the umpire\'s decision after being given out lbw -- a clear breach of the DRS rules.\nWhile Smith called the incident on the fourth and final day a one-off "brain fade", Kohli said that "it\'s been happening for the last three days and it has to stop".\nIndia and Australia, the top two-ranked teams in Test cricket, have often been at loggerheads and relations hit a low point in 2008 when Indian spinner Harbhajan Singh was accused of calling Andrew Symonds a monkey.\nKohli himself was fined 50 percent of his match fee three years ago for bringing the game into disrepute after flashing the middle finger to the crowd in the Sydney Test.',
+ 'title': u"India v Australia: Virat Kohli has 'no regrets' over Australia bust-up"}
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/india/iaf-sukhoi-30-aircraft-crashes-in-barmer-pilots-safe/articleshow/57648856.cms> (referer: http://timesofindia.indiatimes.com/)
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/auto/cars/automakers-put-india-in-top-gear-five-major-car-launches-in-march/articleshow/57645612.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg'],
+ 'files': [{'checksum': '2555cdd309a0881c54e4576f9fde1aa8',
+            'path': 'e5ccf82dd74c8157391278d13b0cf4b76c9e2611.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646277,width-400,resizemode-4/57646277.jpg'}],
+ 'story': u"Major automakers are pulling out all stops to attract buyers towards their showroom this month.\nA slew of cars have either been or are scheduled to be launched and the following are some of the major highlights.\nMaruti Suzuki Baleno RS Photo courtesy: Nexa Experience One of the most anticipated cars of 2017, the Baleno RS created a big buzz when launched on March 3 at a price of Rs 8.69 lakh (ex-showroom Delhi).\nOffered only in petrol variant for now, the Baleno RS has a 1.0-litre, three-cylinder Boosterjet combustion chamber which belts out 102PS of power and 150Nm of torque.\nThe feature list includes 16-inch black alloy wheels, day-time running LEDs, projector headlamps, disc brakes on all four wheels, automatic headlamps, SmartPlay infotainment system with Apple CarPlay and built-in GPS navigation, voice command system, reverse parking sensors with a camera, push start/stop with smart key, automatic climate control, ABS and dual airbags.\nClick here for full details.\nRenault Kwid Climber TNN Photo The Kwid has been a success story for the French in India.\nLooking to build upon it, Renault launched the Kwid Climber - first showcased at the 2016 Indian Auto Expo - on March 9 at an introductory price of Rs 4.3 lakh (ex showroom, Delhi).\nOffered in 1.0-litre SCe (Smart Control efficiency) and a a five-speed AMT version - called Easy-R Gear Box, the Kwid Climber has several visual changes which include bumper overrriders, front and rear terrain protectors with orange accents, two tone arching roof bars, side-door protection cladding and a higher ground clearance than the original model.\nClick here for full details.\nTata Motors Tigor Photo under permission from gims.swiss Tata Motors made has grabbed several headlines at the ongoing Geneva Motor Show.\nWhile its first sportscar - RACEMO - is the cornerstone here, the company also showcased the Tigor - scheduled for an India launch on March 29.\nThe petrol versipon of the car will be powered by a 1.2-litre Revotron engine while a 1.05-litre Revotron motor will be inside the diesel variant.\nAn option between five-speed manual and an automatic transmission will also be offered.\nPronounced Tee-Gaur, the compact sedan will lock horns with Maruti Suzuki DZire, Honda Amaze and Ford Aspire.\nReports suggest Tata will undercut competition with its pricing for Tigor.\nHonda WR-V Photo courtesy hondacarindia.com After introducing the 2017 edition of Honda City, the Japanese auto giant is betting big with crossover vehicle WR-V.\nWhile based on the Jazz platform, the sub-four meter WR-V is taller and has a better ground clearance to tackle Indian roads.\nThe car has ABS with EBD and dual airbags as standard while much like the new City, is expected to be packed with gizmoz.\nIt will be offered in options of a 1.2-litre petrol and 1.5-litre diesel engines.\nIndia will be the first global market of the production-ready car and it will be officially launched tomorrow (March 16).\nLamborghini Aventador S TNN Photo For those looking to stand out from the crowd - and have Rs 5.01 crore, the Italian auto giant raced in the Aventador S on March 3.\nThe Aventador S supercar made its way to India only in the coupe form and features the same 6.5-litre, naturally aspirated V12 engine that powered its predecessor.\nThe engine for the Aventador S is returned to produce 740PS of power and 690Nm of torque.\nThat's 10PS less than the SV trim but 40PS more than the car it replaces - the standard Aventador.\nClick here for full details.",
+ 'title': u'Automakers put India in top gear: Five major car launches in March'}
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms> (referer: http://timesofindia.indiatimes.com/)
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg> referred in <None>
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/world/pakistan/pakistani-girl-congratulates-pm-modi-for-up-victory-calls-for-turning-focus-on-peace/articleshow/57642107.cms>
+{'date': '2017-03-15 15:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg'],
+ 'files': [{'checksum': 'c0fb25a249eacfeaab0c9314541b86af',
+            'path': 'd293d9c6ffa7b77822e3be7953e5a49bd0201657.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57642076,width-400,resizemode-4/57642076.jpg'}],
+ 'story': u'ISLAMABAD: Congratulating Prime Minister Narendra Modi for the Bharatiya Janata Party\'s (BJP) historic mandate+ in the Uttar Pradesh Assembly Elections, an eleven year old Pakistani school girl wrote to him saying that he should now focus towards winning more hearts of Indians and Pakistanis alike, by becoming a bridge of peace between the two nations.\nIn her letter, Aqeedat Naveed highlighted on the need for peace between India and Pakistan, and said that Prime Minister Modi can help speed up the process, reports DunyaNews.\n"Once my father told me that winning of hearts is a marvelous job.\nPerhaps you have won the hearts of Indian people, therefore you won the election in UP.\nBut I must tell you if you want to win more Indian and Pakistani hearts, you should take steps towards friendship and peace.\nBoth countries need good relation.\nLet\'s make a peace bridge between India and Pakistan.\nLet\'s decide that we will not buy bullets, will buy books.\nWe will not buy the guns, will buy the medicine for the poor people," Aqeedat wrote in the two page letter.\nPakistan, Bangladesh may feel impact of Uttar Pradesh election resultsThere has been some speculation that the government had been waiting for the UP elections to be over to pick up the threads of engagement with Pakistan, which have gone into deep freeze since the Uri attack.\nShe further emphasized that the choice between peace and conflict lies open for both the nations, and signed off by congratulating the Prime Minister for the UP Polls victory.\nRead this story in Malayalam',
+ 'title': u"Pakistani girl congratulates PM Modi for UP victory, calls for turning focus on 'peace'"}
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg> referred in <None>
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg> referred in <None>
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/assembly-elections/uttar-pradesh/news/bjp-to-select-up-cm-with-2019-ls-elections-in-mind/articleshow/57641800.cms>
+{'date': '2017-03-15 10:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg'],
+ 'files': [{'checksum': '5768ca4f88136248737ee15ce1a5a8eb',
+            'path': 'a3bdfc6ceaf94fceffb042613094ec2d7a0ddd64.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57643591,width-400,resizemode-4/57643591.jpg'}],
+ 'story': u'LUCKNOW: Development of UP+ in the run up to the 2019 Lok Sabha elections will be one of the biggest criterion for BJP leaders while choosing the CM for the state.\nA decision is likely to be taken only after the floor test at Goa+ and Manipur is over, sources told TOI.\nWhile several names are doing the rounds for the post, sources said the party will first reach consensus on characteristics required in the incumbent, including a perfect caste combination and age.\nThe new CM is likely to be a face that appeals to the youth and has a progressive outlook.\n"Since, BJP has a thumping majority of 325 MLAs, it has no compulsion to select the candidate from a particular caste of region.\nIt can go for a person who can take forward its development agenda, keeping 2019 elections in mind," said a political observer.\nBJP chief Amit Shah to pick UP, Uttarakahand chief ministersShah is likely to announce his choices based on the findings of observers being sent to the two states to sound out party MLAs.\nFor all practical purposes, Shah along with PM Modi, will decide who will be the CMs of politically pivotal Uttar Pradesh and neighbouring Uttarakahand.\nThe names doing the rounds include minister of state for railways Manoj Sinha, Union home minister Rajnath Singh, state BJP chief Keshav Prasad Maurya and firebrand MP Yogi Adityanath.\nBJP\'s UP in charge for elections Om Mathur said no decision had been taken yet as party leadership was focusing on the situation in Goa and Manipur.\nUrban development and I&B minister Venkaiah Naidu and BJP general secretary Bhupendra Yadav have been appointed observers for the election of the CM.',
+ 'title': u'BJP to select UP CM with 2019 Lok Sabha elections in mind'}
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/world/rest-of-world/taiwan-says-chinese-military-threat-grows-us-regional-strategy-unclear/articleshow/57646420.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg'],
+ 'files': [{'checksum': '54f9bc60ddf122457273e0021d2fad60',
+            'path': '644935bb4e6a6f95e5d0d592d7d0fe16d5a97296.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646413,width-400,resizemode-4/57646413.jpg'}],
+ 'story': u'China\'s accelerated military development and recent activity by its military aircraft+ and ships around Taiwan pose an increased threat to the self-ruled island, according to a Taiwanese government defence report draft reviewed by Reuters.\nThe 2017 Quadrennial Defence Review (QDR) also highlights the uncertainty over the future strategic direction of the United States in the region, the impact of Japan flexing its military capabilities and "conflict crisis" potential in the disputed South China Sea.\n"The recent activity of Chinese jets and ships around Taiwan shows the continued rise in (China\'s) military threat capabilities," highlighting the importance of Taiwan\'s need to defend itself, the review will say.\n"In addition to posing a military threat to our country, it also has a negative impact on regional stability." The document is due to be presented to parliament on Thursday by Taiwan defence minister Feng Shih-kuan.\nThe defence ministry had no comment on the report on Wednesday.\nThe four-yearly review is the first since President Tsai Ing-wen took office last May and the first under her Democratic Progressive Party, which traditionally advocates independence for Taiwan.\n"The country\'s military development and Taiwan\'s freedom and prosperity are the same living body," according to the draft.\nWAYWARD PROVINCE The QDR comes as China - which claims Taiwan as a wayward province to be taken back by force if necessary - has been stepping up air and sea military exercises in waters surrounding Taiwan as part of a sweeping modernisation of its armed forces.\nSpeaking in Beijing at his annual news conference on Wednesday, Chinese Premier Li Keqiang repeated that China was resolutely opposed to Taiwan independence but it would uphold peace across the Taiwan Strait.\n"No matter how the situation on the island may evolve, the fraternal bond between the two sides cannot be severed and will not be able to change history or the fact that both sides belong to one and the same China," Li said.\nDevelopments in the South China Sea, including rejection of an international court ruling by other claimants on territorial rights of the Philippines in the disputed waters, China\'s land reclamation and militarisation, and freedom of navigation patrols championed by the United States, could deepen strife in the area, the review will say.\n"Sovereignty disputes in the region and strategic competition could intensify, leading to hidden conflict crisis." China has begun new construction work on a disputed island in the South China Sea, satellite images show, just days ahead of the first official visit to the region by U.S.\nSecretary of State Rex Tillerson.\nThe review also listed Japan\'s move away from its pacifist constitution "to strengthen its armaments and lift a ban on using troops abroad" as having deep and far-reaching impacts on the security situation in the Asia-Pacific and the Taiwan Strait.\nReuters reported this week that Japan plans to send its largest warship on a three-month tour through the South China Sea beginning in May - its biggest show of naval force in the region since World War Two.\nAmong security challenges for Taiwan, the review also said "the United States\' Asia-Pacific strategic direction and troop deployment was not clear" under the new administration of President Donald Trump.\nTrump provoked consternation in Beijing by taking a congratulatory call from Taiwan\'s Tsai and then calling into question adherence to the "One China" policy, under which Washington acknowledges the Chinese position that there is only one China and Taiwan is part of it.\nLast month, Trump agreed to honour the policy during a phone call with Chinese leader Xi Jinping.\nThe United States remains Taiwan\'s biggest ally and arms supplier and is bound by legislation to provide the means to help the island defend itself.\nThe review reflected the realities of Taiwan\'s situation, but wasn\'t specific enough on how Tsai\'s government will address budget needs for major indigenous defence programmes or the shrinking number of soldiers in the armed forces, said Chieh Chung, a research fellow in the national security division of Taiwan\'s National Policy Foundation, a local think tank.\nThe review affirmed Taiwan\'s push to develop and build its own submarines, jets and ships, and strengthen its electronic and cyber defences against China.',
+ 'title': u'Taiwan says Chinese military threat grows, US regional strategy unclear'}
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/city/kolkata/parents-give-higher-secondary-exam-alongside-son/articleshow/57647176.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg'],
+ 'files': [{'checksum': '840b500c2006d061eb6858b9bb273b02',
+            'path': '0c7b84e80752b0494490d40c7f6e13b9e9e20682.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57647153,width-400,resizemode-4/57647153.jpg'}],
+ 'story': u'KOLKATA: The story of Nil Battey Sannata, a film in which a mother who works as a maid joins her daughter in writing the school exams, seems to have crossed over from celluloid into real life.\nBiplab Mondal, a class 12 student at Arongghata Hajrapur School in West Bengal\'s Ranaghat, appeared for the higher secondary examination with his parents.\nBiplab\'s father Balaram is a 43-year-old farmer and his mother Kalyani is a 33-year-old homemaker.\nFor the last few years, the family of three has been diligently preparing for the Higher Secodary exams, with Biplab playing teacher to his parents.\n"I taught my parents.\nThey are weak in English, so one of our neighbours tutored them in the subject," said Biplab.\nBalaram and his wife Kalyani cleared the Madhyamik exam in 2014 and 2015 respectively, before enrolling in Arongghata Hajrapur School.\nBut they say it was not an easy process.\n"When our son cleared Madhyamik, we decided to sit in Higher Secondary exam with our son.\nAs we were old, many schools refused to admit us.\nFinally, we got admission in Arongghata Hajrapur School," Balaram said.\nThe headmaster at the school said he was impressed to see Biplab\'s parents so dedicated to their education, and made sure to pay special attention to them.\nLocal MLA Samir Poddar said, "Those who were forced to leave education can be inspired by this family.\nIf anyone wants to read we are always there to help them." Biplab\'s mother Kalyani said the family got a cycle from the school under the government\'s Sabuj Sathi scheme.\n"The three of us went to school together four days a week.\nSome people made fun of us, but we never took their remarks seriously," Kalyani added.\nBalaram said that he has many educated relatives, and some of them are college professors.\nBut they avoid him and his family because they are lacking in a formal education.\n"They don\'t even keep in touch with us.\nSo I want to show them what we are capable of," Balaram said.\nRead this story in Bangla',
+ 'title': u'Parents give higher secondary exam alongside son'}
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/assembly-elections/manipur/news/bjps-n-biren-singh-sworn-in-as-chief-minister-of-manipur/articleshow/57647374.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg'],
+ 'files': [{'checksum': '1cadc17c291886eb235d5d3da56e2fd2',
+            'path': '5196e39d2bb82bbac4931a7e9855989ee3a6508b.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57647342,width-400,resizemode-4/57647342.jpg'}],
+ 'story': u"NEW DELHI: Ending 15 years of Congress rule in Manipur, BJP leader Nongthombam Biren Singh was sworn in as the state's chief minister in Imphal today.\nY Joykumar Singh of the National People's Party was sworn in as the deputy chief minister at the Raj Bhawan in Imphal.\nYesterday, Manipur governor Najma Heptulla had invited Singh, who was unanimously elected the leader of the 21-member BJP legislature party, to form the government.\nThis is the first time the BJP has come to power in the north-eastern state.\nThe invitation to Singh came after four members of the Naga People's Front, an NDA ally, met the governor and declared their support to BJP for government formation.\nManipur threw up a hung verdict in the state assembly election.\nWhile Congress emerged as the single largest party with 28 seats, the BJP came in at second place with 21 seats.\nThe saffron party, led by Biren Singh, was to quick to stake claim to form the government with the support of 32 MLAs in the 60-member assembly.",
+ 'title': u"BJP's N Biren Singh sworn in as chief minister of Manipur"}
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/sports/cricket/news/shashank-manohar-steps-down-as-icc-chairman/articleshow/57646490.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg'],
+ 'files': [{'checksum': '1029fa45da759026d52e831a60e3729c',
+            'path': 'da7496dbc2e0d91d67a79e76ed9bfddedc0a11a4.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57646576,width-400,resizemode-4/57646576.jpg'}],
+ 'story': u'DUBAI: In a surprise development, Shashank Manohar today resigned as ICC chairman after merely eight months in office citing personal reasons.\nThe 59-year-old Manohar mailed his resignation letter to ICC CEO Dave Richardson without clarifying the exact reason for this sudden move to end what was to be a two-year-tenure.\nHowever, according to highly-placed sources Manohar has decided to quit as BCCI seems to have gained enough ground to block the constitutional and financial reforms that were set to be passed by the ICC at its next board meeting.\nAny reform to be passed needs 2/3rd majority but BCCI, in all likelihood, has managed to get Bangladesh, Sri Lanka and Zimbabwe on its side.\nIt is learnt, expecting a loss of face, Manohar has resigned with immediate effect.\n"I was elected unopposed as the first independent Chairman of ICC last year.\nI have tried to do my best and have tried to be fair and impartial in deciding matters in the functioning of the Board and in matters related to Member Boards along with the able support of all Directors," Manohar has stated in his resignation letter.\n"However, for personal reasons it is not possible for me to hold the august office of ICC Chairman and hence I am tendering my resignation as Chairman with immediate effect.\n"I take this opportunity to thank all the Directors, the Management and staff of ICC for supporting me wholeheartedly.\nI wish ICC all the very best and hope it achieves greater heights," he concluded.\nManohar had last year resigned from the BCCI citing his inability to carry out Lodha Committee reforms in toto.\nHis detractors in BCCI at that time had said he left a sinking ship for the safer confines of the ICC.\nHe became the first independent chairman of ICC but had several run ins with BCCI on revenue sharing pattern.\nThe BCCI officials believe that for his personal ambitions to head the ICC, Manohar had not cared about the BCCI\'s interests.\nHis decision to bring in constitutional reforms has been severely opposed by BCCI along with Sri Lanka.\nThe ICC said it has received Manohar\'s resignation and will comment after taking stock of the situation.\n"The ICC has confirmed it has received an email from Chairman Shashank Manohar tendering his resignation.\nThe ICC Board will assess the situation and next steps before making a further announcement," the world body stated in a brief press release.',
+ 'title': u'Shashank Manohar steps down as ICC chairman'}
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/india/iaf-sukhoi-30-aircraft-crashes-in-barmer-pilots-safe/articleshow/57648856.cms>
+{'date': '2017-03-15 16:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg'],
+ 'files': [{'checksum': 'a381b71fc470734a4571c24f92ce69f4',
+            'path': 'a16213cbb774b13d8d5008107dac30a7fede11d5.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57649233,width-400,resizemode-4/57649233.jpg'}],
+ 'story': u'JAISALMER: A Sukhoi-30 MKI fighter aircraft of the Indian Air Force on Wednesday crashed in Shivkar Kudla village in Rajasthan\'s Barmer district, leaving three villagers injured.\nBoth the pilots ejected safely.\n"The Sukhoi aircraft crashed near Barmer while on a routine training sortie.\nBoth the pilots ejected safely," Defence spokesperson Lt Col Manish Ojha said.\nDistrict Collector Sudhir Kumar Sharma while confirming the incident said," A fighter jet crashed near Shivkar village in Sadar police station area and the area has been cordoned off." "Air force and police officials have been rushed to the spot," he added.\nAccording to the Air Force, the jet took off from Jodhpur and after a technical snag crashed in Barmer.\nMeanwhile, fire spread to three hamlets in the vicinity charring some huts but no casualty has been reported.\nThe incident took place after hours after a Chetak helicopter of the Indian Air Force crash landed in Uttar Pradesh, moments after it took off from an airbase on the outskirts of Allahabad this morning.\nNo casualties have been reported, defence officials said.\nLast year, in September, a MiG-21 aircraft had crashed in the same area.',
+ 'title': u'IAF Sukhoi-30 aircraft crashes in Barmer, pilots safe'}
+engine.py : 2017-03-15 17:01 DEBUG Crawled (200) <GET http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg> (referer: None)
+files.py : 2017-03-15 17:01 DEBUG File (downloaded): Downloaded file from <GET http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg> referred in <None>
+pipelines.py : 2017-03-15 17:01 INFO **************************************************
+pipelines.py : 2017-03-15 17:01 INFO ***Found a New Article***
+pipelines.py : 2017-03-15 17:01 INFO **Saving to Database**
+scraper.py : 2017-03-15 17:01 DEBUG Scraped from <200 http://timesofindia.indiatimes.com/elections/news/25-30-of-aaps-votes-was-transferred-to-akalis-arvind-kejriwal/articleshow/57645271.cms>
+{'date': '2017-03-15 14:00:00',
+ 'file_urls': [u'http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg'],
+ 'files': [{'checksum': 'ad198dfa2aab5816e62462529c12e7c3',
+            'path': 'c2621c052b0da496706aad2005e34b45785c8c9d.jpg',
+            'url': 'http://timesofindia.indiatimes.com/thumb/msid-57645254,width-400,resizemode-4/57645254.jpg'}],
+ 'story': u'NEW DELHI: AAP national convenor Arvind Kejriwal today renewed his demand+ for paper ballots in Delhi municipal corporation polls and alleged that faulty Electronic Voting Machines (EVMs) had led to the AAP\'s downfall in the state assembly elections, especially in Punjab+ .\nCiting exit polls which predicted AAP would sweep the Punjab Legislative Assembly election, Kejriwal questioned the outcome+ which was completely contrary to these forecasts.\n"Many said there is anger against Akalis and the AAP is sweeping polls.\nStill, AAP got 25 per cent votes and SAD got 31 per cent, how is this possible?" Kejriwal demanded.\nLaunching a scathing attack against the Congress and the SAD-BJP coalition, Kejriwal claimed that AAP\'s vote share in Punjab had been transferred to rival parties through tampered EVMs.\n"20-25 per cent of AAP\'s vote was transferred to SAD, which is why Congress won the election.\nAkali\'s victory would\'ve made it too obvious.\nThey wanted AAP to lose in any which way," the Delhi chief minister alleged at a press conference here.\nKejriwal then attempted to lend legitimacy to his allegations by referring to the Supreme Court\'s statement on EVMs.\n"Supreme Court has said that EVM is vulnerable to tampering, we aren\'t saying it.\nI know you all will make fun of me, hashtag me.\nBut if EVMs can be tampered with, that would mean the end of democracy in India," he said.\nAdmitting that he accepted the results in Goa, where the AAP had contested polls for the first time, Kejriwal called for a probe into the dubious EVMs.\n"We know it is too late to declare Punjab and Goa elections void, but this is for the future, faith has to be restored in the electoral process.\nThe suspicion of tampered EVMs must be investigated to increase voter confidence," the AAP leader said.\nAfter BSP supremo Mayawati, the Delhi chief minister had questioned the reliability of EVMs after facing a resounding defeat in the Goa assembly polls and finishing in third place in the Punjab election.\nDelhi Congress chief Ajay Maken also threw his weight+ behind Kejriwal\'s anti-electronic voting machine drive.\nKejriwal yesterday directed chief secretary MM Kutty to write to the state election commissioner, asking him to hold the upcoming municipal elections through ballot papers.',
+ 'title': u"20-25% of AAP's votes was transferred to Akalis: Arvind Kejriwal"}
+engine.py : 2017-03-15 17:01 INFO Closing spider (finished)
+statscollectors.py : 2017-03-15 17:01 INFO Dumping Scrapy stats:
+{'downloader/exception_count': 2,
+ 'downloader/exception_type_count/scrapy.exceptions.IgnoreRequest': 2,
+ 'downloader/request_bytes': 9509,
+ 'downloader/request_count': 28,
+ 'downloader/request_method_count/GET': 28,
+ 'downloader/response_bytes': 1005771,
+ 'downloader/response_count': 28,
+ 'downloader/response_status_count/200': 28,
+ 'dupefilter/filtered': 5,
+ 'file_count': 10,
+ 'file_status_count/downloaded': 10,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 3, 15, 11, 31, 51, 932740),
+ 'item_scraped_count': 10,
+ 'log_count/DEBUG': 52,
+ 'log_count/ERROR': 4,
+ 'log_count/INFO': 37,
+ 'request_depth_max': 1,
+ 'response_received_count': 28,
+ 'scheduler/dequeued': 17,
+ 'scheduler/dequeued/memory': 17,
+ 'scheduler/enqueued': 17,
+ 'scheduler/enqueued/memory': 17,
+ 'spider_exceptions/ValueError': 4,
+ 'start_time': datetime.datetime(2017, 3, 15, 11, 31, 50, 337089)}
+engine.py : 2017-03-15 17:01 INFO Spider closed (finished)

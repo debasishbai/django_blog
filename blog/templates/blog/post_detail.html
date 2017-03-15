@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="post" style="padding: 0px 100px 0px 70px;">
@@ -23,6 +24,10 @@
             </div>
         {% endif %}
         <h1>{{ post.title }}</h1>
+        <br>
+        {% if post.image_name %}
+        <img src="{% static 'image/' %}{{ post.image_name }}" width="540px" height="360px" alt="My Image"/>
+        {% endif %}
         <p style="font-family: 'Lora', serif; font-size: 20px;">{{ post.text | linebreaksbr }}</p>
     </div>
     <hr>

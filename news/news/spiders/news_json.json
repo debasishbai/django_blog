@@ -1,0 +1,30 @@
+{
+	"rediff": {
+		"start_urls": "http://www.rediff.com/news/headlines",
+		"response_css": "#msncontainer > div > div",
+		"title": "div div.ingap p a::text",
+		"date": "div div.hdbottomdate::text",
+		"url": "None"
+	},
+
+	"toi": {
+		"start_urls": "http://timesofindia.indiatimes.com/",
+		"response_css": "#lateststories > div > ul.list9 > li",
+		"title_1": "li:nth-of-type(n) > a::text",
+		"title_2": "#content > div > div > div.wrapper.clearfix.article-content-wrapper > div.main-content > section.title_section.clearfix > h1::text",
+		"story": "#content > div > div > div.wrapper.clearfix.article-content-wrapper > div.main-content > div.article_content.clearfix > arttextxml > div > div",
+		"url": "#lateststories > div > ul.list9 > li:nth-of-type(n) > a::attr(href)",
+		"date": "#content > div > div > div.wrapper.clearfix.article-content-wrapper > div.main-content > section.title_section.clearfix > span > span:nth-child(2)::text",
+		"image_1": "#content > div > div > div.wrapper.clearfix.article-content-wrapper > div.main-content > section.highlight.clearfix > img::attr(src)",
+		"image_2": "#content > div > div > div.wrapper.clearfix.article-content-wrapper > div.main-content > section.highlight.clearfix.vdo > div > div.toppart > div.preloader > img::attr(src)"
+	},
+
+	"ndtv": {
+		"start_urls": "http://www.ndtv.com/latest?pfrom=home-topnavigation2016",
+		"response_css": "#lateststories > div > ul.list9 > li",
+		"title": "li a::text",
+		"url": "li a::attr(href)",
+		"date": "None"
+	}
+}
+
