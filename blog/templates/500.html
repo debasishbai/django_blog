@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="post" style="padding: 0px 150px 0px 130px;">
+        <h1 style="font-size: 100px; text-shadow: 0 5px 20px rgba(0,0,0,0.5); text-align:center;">
+            <strong>500</strong>
+        </h1>
+    </div>
+    <div style="text-align:center;">
+        <h1 style="text-shadow: 0 5px 20px rgba(0,0,0,0.2); text-align:center;">
+            <strong>Something has gone seriously wrong!</strong>
+        </h1>
+        <p style="font-size: 20px; text-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+            We're experiencing some internal server problem. Please try again later.
+        </p>
+    </div>
+    <div class="post" style="padding:70px 150px;">
+        <img src="{% static 'flyingpython.png' %}" width="450px" height="500px" />
+    </div>
+
+{% endblock %}

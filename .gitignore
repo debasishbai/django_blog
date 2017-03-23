@@ -17,3 +17,13 @@ blog/views.pyc
 blog/forms.pyc
 blog/migrations/0003_comment.pyc
 blog/migrations/0004_auto_20170314_2057.pyc
+blog/migrations/0004_auto_20170307_0148.pyc
+blog/migrations/0005_auto_20170315_1324.pyc
+news/news/__init__.pyc
+news/news/pipelines.pyc
+news/news/settings.pyc
+news/news/spiders/__init__.pyc
+news/news/spiders/items.pyc
+news/news/spiders/log_files.pyc
+news/news/spiders/timesnews.pyc
+static/

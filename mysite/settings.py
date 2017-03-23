@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 import os
 from django.core.exceptions import ImproperlyConfigured
@@ -35,7 +38,9 @@ ENV_ROLE = get_env_variable("ENV_ROLE")
 EMAIL_USER = get_env_variable("EMAIL_HOST_USER")
 EMAIL_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD")
 SECRET_KEY = get_env_variable("SECRET_KEY_BLOG")
-
+CLOUD_NAME = get_env_variable("CLOUD_NAME")
+CLOUD_API_KEY = get_env_variable("CLOUD_API_KEY")
+CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -48,7 +53,7 @@ if ENV_ROLE == "production":
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 if ENV_ROLE == "development":
-    DEBUG = True
+    DEBUG = False
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -59,7 +64,6 @@ if ENV_ROLE == "development":
             'PORT': '5432',
         }
     }
-
 
 ALLOWED_HOSTS = ["*"]
 
@@ -74,6 +78,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "blog",
+    "cloudinary",
 ]
 
 
@@ -142,12 +147,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = '/static/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -157,3 +161,9 @@ EMAIL_HOST_USER = EMAIL_USER
 EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+cloudinary.config(
+        cloud_name=CLOUD_NAME,
+        api_key=CLOUD_API_KEY,
+        api_secret=CLOUD_API_SECRET
+    )

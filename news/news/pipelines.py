@@ -5,6 +5,8 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import psycopg2
+import urlparse
+import os
 import logging
 from datetime import datetime
 from scrapy.exceptions import DropItem
@@ -12,14 +14,20 @@ import re
 
 
 class NewsPipeline(object):
+
     fmt = '%Y-%m-%d %H:%M:%S'
     creation_date_raw = datetime.now()
     creation_date = creation_date_raw.strftime(fmt)
 
+    urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
     def __init__(self):
-        self.conn = psycopg2.connect(host="localhost", user="", password="", dbname="")
+        self.conn = psycopg2.connect(database=self.url.path[1:], user=self.url.username,password=self.url.password, host=self.url.hostname, port=self.url.port)
+        # self.conn = psycopg2.connect(host="localhost", user="postgres", password="cheeks", dbname="blog")
 
     def process_item(self, item, spider):
+
         if not item["date"]:
             item["date"] = self.creation_date
             logging.warning("****Article Does Not Contain any Date****")
@@ -30,6 +38,7 @@ class NewsPipeline(object):
             raise DropItem("****Missing title in %s****" % item)
 
         check_for_duplicates = self.check_dupes(item)
+
         if check_for_duplicates:
             logging.info("**********Duplicate Article**********")
             logging.info("Skipping . . . . .")
@@ -37,6 +46,8 @@ class NewsPipeline(object):
         else:
             clean_story = self.strip_story(item["story"])
             item["story"] = clean_story
+            clean_image = self.strip_images(item["files"][0]["path"])
+            item["files"][0]["path"] = clean_image
             save_item = self.save_to_database(item)
             return save_item
 
@@ -63,3 +74,13 @@ class NewsPipeline(object):
         stripped_story = re.sub(r"(.+?\.)\s(.+?)", r"\1\n\2", raw_story)
         return stripped_story
 
+    @staticmethod
+    def strip_images(images):
+        if not images.endswith(".jpg"):
+            logging.warning("*****Article Image Not in JPG Format*****")
+            logging.info("*****Removing Image*****")
+            images = None
+            return images
+        else:
+            image_name = images.split("/")[1]
+            return image_name

@@ -14,11 +14,11 @@
     {% empty %}
         {% if user.is_staff %}
         <div class="post">
-            <span class="text-info" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; ">
+            <span class="text-info" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; text-shadow: 0 5px 20px rgba(0,0,0,0.4); ">
             <b>No post to review!</b>
             </span>
         {% else %}
-            <span class="text-danger" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; ">
+            <span class="text-danger" style="height:50%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center; font-size:55px; text-shadow: 0 5px 20px rgba(0,0,0,0.4); ">
                 <b>Nothing's here yet!</b>
             </span>
             <div style="height:75%; width:65%; position:fixed; display:flex; align-items:center; justify-content:center;">

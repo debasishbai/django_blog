@@ -1,4 +1,5 @@
 from log_files import set_logger
+from scrapy.crawler import CrawlerProcess
 from scrapy.spiders import CrawlSpider
 from dateutil.parser import parse
 from items import NewsItem
@@ -49,3 +50,7 @@ class NewsSpider(CrawlSpider):
         my_item = NewsItem(title=title, story=story, date=pub_date, file_urls=[image])
         return my_item
 
+
+# process = CrawlerProcess()
+# process.crawl(NewsSpider)
+# process.start()

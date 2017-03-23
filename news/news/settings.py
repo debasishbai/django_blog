@@ -8,7 +8,11 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-
+import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from scrapy.pipelines.files import FilesPipeline
 BOT_NAME = 'news'
 
 SPIDER_MODULES = ['news.spiders']
@@ -27,7 +31,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -64,12 +68,54 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
+
 ITEM_PIPELINES = {
    'news.pipelines.NewsPipeline': 300,
    'scrapy.pipelines.files.FilesPipeline': 1,
 }
 
-FILES_STORE = '/home/debasish/django_blog/blog/static/image'
+
+def get_env_variable(var_name):
+    """ Get the environment variable or return exception """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise Exception
+
+
+ENV_ROLE = get_env_variable("ENV_ROLE")
+CLOUD_NAME = get_env_variable("CLOUD_NAME")
+CLOUD_API_KEY = get_env_variable("CLOUD_API_KEY")
+CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
+
+
+# def cloudinary_keys(file_names):
+#     cloudinary.config(
+#         cloud_name=CLOUD_NAME,
+#         api_key=CLOUD_API_KEY,
+#         api_secret=CLOUD_API_SECRET
+#         )
+#     for path, subdirs, files in os.walk(file_names):
+#         photos = files
+#     file_path = path + "/"
+#     for photo in photos:
+#         cloudinary.uploader.upload(file_path + photo, public_id=photo)
+#     return 1
+
+
+if ENV_ROLE == "development":
+    FILES_STORE = "/home/debasish/heroku_apps/debasishbai/blog/static/images"
+    # upload_images = cloudinary_keys(FILES_STORE)
+
+
+if ENV_ROLE == "production":
+    try:
+        os.makedirs("/app/blog/static/images")
+    except Exception:
+        pass
+    FILES_STORE = "/app/blog/static/images"
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -91,3 +137,5 @@ FILES_STORE = '/home/debasish/django_blog/blog/static/image'
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+

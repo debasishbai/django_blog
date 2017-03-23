@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
+{% load cloudinary %}
 
 {% block content %}
     <div class="post" style="padding: 0px 100px 0px 70px;">
@@ -23,10 +24,10 @@
                     Thank you.</h3>
             </div>
         {% endif %}
-        <h1>{{ post.title }}</h1>
+        <h1 style="text-shadow: 0 5px 20px rgba(0,0,0,0.4);">{{ post.title }}</h1>
         <br>
         {% if post.image_name %}
-        <img src="{% static 'image/' %}{{ post.image_name }}" width="540px" height="360px" alt="My Image"/>
+        <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=540px height=360px/>
         {% endif %}
         <p style="font-family: 'Lora', serif; font-size: 20px;">{{ post.text | linebreaksbr }}</p>
     </div>

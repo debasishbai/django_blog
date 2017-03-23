@@ -1,7 +1,7 @@
 .post h2 a, .post h1
 {
     color: #8F0707;
-    font-family: 'Roboto', serif;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
 
 }
@@ -87,3 +87,4 @@ font-family: 'Bitter', serif;
 .post {
     margin-bottom: 70px;
 }
+

@@ -1,9 +1,12 @@
 {% extends "blog/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
     {% for post in posts %}
-        <div class="post" style="padding: 0px 150px 0px 120px;">
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <div class="post" style="padding: 0px 150px 0px 120px; text-shadow: 0 5px 20px rgba(0,0,0,0.4);">
+            <h2>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            </h2>
             <div class="date">
                 <p>Posted by: <strong><i>{{ post.author }}</i></strong> on {{ post.published_date|date:'F d, Y' }}</p>
             </div>
