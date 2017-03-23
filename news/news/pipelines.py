@@ -24,7 +24,6 @@ class NewsPipeline(object):
 
     def __init__(self):
         self.conn = psycopg2.connect(database=self.url.path[1:], user=self.url.username,password=self.url.password, host=self.url.hostname, port=self.url.port)
-        # self.conn = psycopg2.connect(host="localhost", user="postgres", password="cheeks", dbname="blog")
 
     def process_item(self, item, spider):
 

@@ -57,8 +57,8 @@ if ENV_ROLE == "development":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog',
-            'USER': 'postgres',
+            'NAME': '',
+            'USER': '',
             'PASSWORD': BLOG_DB_PASS,
             'HOST': 'localhost',
             'PORT': '5432',
