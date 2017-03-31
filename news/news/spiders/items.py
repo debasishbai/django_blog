@@ -13,7 +13,8 @@ class NewsItem(scrapy.Item):
     # name = scrapy.Field()
     title = scrapy.Field()
     story = scrapy.Field()
+    caption = scrapy.Field()
     date = scrapy.Field()
-    file_urls = scrapy.Field()
-    files = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
 

@@ -27,14 +27,19 @@ class NewsPipeline(object):
 
     def process_item(self, item, spider):
 
-        if not item["date"]:
+        if item.get("date") is None:
             item["date"] = self.creation_date
-            logging.warning("****Article Does Not Contain any Date****")
-            logging.info("****Adding Date****")
-            return item
+            logging.warning("*******Article Does Not Contain any Date*******")
+            logging.info("*******Adding Date*******")
 
-        if not item["title"]:
-            raise DropItem("****Missing title in %s****" % item)
+        if item.get("caption") is None:
+            item["caption"] = item.get("title")
+            logging.warning("********Article Does Not Contain any Caption********")
+            logging.info("********Adding Title as Caption********")
+
+        if not (item.get("title") or item.get("story")):
+            logging.warning("*******Missing Either Title or Story in %s********" % item)
+            raise DropItem("******Skipping this Article . . . . .******")
 
         check_for_duplicates = self.check_dupes(item)
 
@@ -45,8 +50,7 @@ class NewsPipeline(object):
         else:
             clean_story = self.strip_story(item["story"])
             item["story"] = clean_story
-            clean_image = self.strip_images(item["files"][0]["path"])
-            item["files"][0]["path"] = clean_image
+            item["images"][0]["path"] = item["images"][0]["path"].split("/")[1]
             save_item = self.save_to_database(item)
             return save_item
 
@@ -59,18 +63,18 @@ class NewsPipeline(object):
     def save_to_database(self, item):
         cur = self.conn.cursor()
         cur.execute("""
-                    INSERT INTO blog_post (title,text,creation_date,image_name,author_id) VALUES (%s,%s,%s,%s,%s)""",
-                    (item["title"], item["story"], item["date"], item["files"][0]["path"], 1))
+                    INSERT INTO blog_post (title,text,creation_date,image_name, caption, author_id) VALUES (%s,%s,%s,%s,%s,%s)""",
+                    (item["title"], item["story"], item["date"], item["images"][0]["path"], item["caption"], 1))
         logging.info("*" * 50)
-        logging.info("***Found a New Article***")
-        logging.info("**Saving to Database**")
+        logging.info("*******Found a New Article*******")
+        logging.info("*******Saving to Database*******")
         self.conn.commit()
         return item
 
     @staticmethod
     def strip_story(story):
         raw_story = " ".join(story.strip().split())
-        stripped_story = re.sub(r"(.+?\.)\s(.+?)", r"\1\n\2", raw_story)
+        stripped_story = re.sub(r"(.+?\..+?\.)\s(.+?)", r"\1\n\n\2", raw_story)
         return stripped_story
 
     @staticmethod

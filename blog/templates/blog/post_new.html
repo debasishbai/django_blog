@@ -1,9 +1,9 @@
-{% extends "blog/base.html" %}
+{% extends 'blog/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
-    <h1>Edit Post</h1>
-    <form method="POST" action="{% url 'post_edit' pk=post.pk %}">
+<h1>New Post</h1>
+    <form method="POST" action="{% url 'post_new' %}">
         {% csrf_token %}
         <table class="table">
             <tr>

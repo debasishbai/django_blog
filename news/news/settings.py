@@ -71,7 +71,7 @@ DOWNLOAD_DELAY = 1
 
 ITEM_PIPELINES = {
    'news.pipelines.NewsPipeline': 300,
-   'scrapy.pipelines.files.FilesPipeline': 1,
+   'scrapy.pipelines.images.ImagesPipeline': 1
 }
 
 
@@ -105,16 +105,15 @@ CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
 
 
 if ENV_ROLE == "development":
-    FILES_STORE = "/home/debasish/heroku_apps/debasishbai/blog/static/images"
-    # upload_images = cloudinary_keys(FILES_STORE)
+    IMAGES_STORE = "/path/to/store/images"
 
 
 if ENV_ROLE == "production":
     try:
-        os.makedirs("/app/blog/static/images")
+        os.makedirs("/path/to/store/images")
     except Exception:
         pass
-    FILES_STORE = "/app/blog/static/images"
+    IMAGES_STORE = "/path/to/store/images"
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -27,3 +27,7 @@ news/news/spiders/items.pyc
 news/news/spiders/log_files.pyc
 news/news/spiders/timesnews.pyc
 static/
+blog/migrations/0006_post_caption.pyc
+blog/migrations/0007_remove_post_image_name.pyc
+blog/migrations/0008_post_image_name.pyc
+news/news/spiders/Logs/

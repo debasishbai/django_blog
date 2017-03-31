@@ -3,7 +3,7 @@
 {% load cloudinary %}
 
 {% block content %}
-    <div class="post" style="padding: 0px 100px 0px 70px;">
+    <div class="post" style="padding: 0px 70px -20px 120px;">
         {% if user.is_staff %}
             {% if post.published_date %}
                 <div class="date">
@@ -27,7 +27,11 @@
         <h1 style="text-shadow: 0 5px 20px rgba(0,0,0,0.4);">{{ post.title }}</h1>
         <br>
         {% if post.image_name %}
-        <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=540px height=360px/>
+        <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=650px height=400px/>
+        <!--<img src="{% static 'images' %}/{{ post.image_name }}" width="650px" height="400px" alt="Image"/>-->
+        <div class="caption">
+            <p class="text-muted" style="font-size:14px;">{{ post.caption }}</p>
+        </div>
         {% endif %}
         <p style="font-family: 'Lora', serif; font-size: 20px;">{{ post.text | linebreaksbr }}</p>
     </div>

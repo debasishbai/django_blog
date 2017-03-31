@@ -47,18 +47,18 @@ CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
 if ENV_ROLE == "production":
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
-    DEBUG = False
+    DEBUG = True
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 if ENV_ROLE == "development":
-    DEBUG = False
+    DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': '',
-            'USER': '',
+            'NAME': 'blog',
+            'USER': 'postgres',
             'PASSWORD': BLOG_DB_PASS,
             'HOST': 'localhost',
             'PORT': '5432',

@@ -1,15 +1,58 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
+{% load cloudinary %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post" style="padding: 0px 150px 0px 120px; text-shadow: 0 5px 20px rgba(0,0,0,0.4);">
-            <h2>
+    <ul class="list-group">
+        {% for post in posts %}
+        <li class="list-group-item">
+        <div class="col-xs-6 col-md-4">
+            {% if post.image_name %}
+            <a href="{% url 'post_detail' pk=post.pk %}" class="thumbnail">
+                <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=200px height=103px alt="Image"/>
+            </a>
+            {% endif %}
+         </div>
+
+        <div class="post" style="padding: 0px 70px -20px 120px; text-shadow: 0 5px 20px rgba(0,0,0,0.4);">
+            <h3>
                 <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-            </h2>
+            </h3>
             <div class="date">
                 <p>Posted by: <strong><i>{{ post.author }}</i></strong> on {{ post.published_date|date:'F d, Y' }}</p>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+        </li>
+    </ul>
+
+
+
+
+{% if is_paginated %}
+    <div class="text-center">
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+            {% if i == page_obj.number %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+        </ul>
+    </div>
+{% endif %}
+
+
 {% endblock %}
