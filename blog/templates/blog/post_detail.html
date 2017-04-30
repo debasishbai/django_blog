@@ -26,13 +26,19 @@
         {% endif %}
         <h1 style="text-shadow: 0 5px 20px rgba(0,0,0,0.4);">{{ post.title }}</h1>
         <br>
+
         {% if post.image_name %}
-        <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=650px height=400px/>
+        <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=650px height=400px alt="Image"/>
         <!--<img src="{% static 'images' %}/{{ post.image_name }}" width="650px" height="400px" alt="Image"/>-->
         <div class="caption">
             <p class="text-muted" style="font-size:14px;">{{ post.caption }}</p>
         </div>
         {% endif %}
+
+        {% if post.user_image %}
+        <img name="files" src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.user_image }}.jpg" width=650px height=400px alt="{{ post.user_image }}">
+        {% endif %}
+
         <p style="font-family: 'Lora', serif; font-size: 20px;">{{ post.text | linebreaksbr }}</p>
     </div>
     <hr>

@@ -47,7 +47,7 @@ CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
 if ENV_ROLE == "production":
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
-    DEBUG = True
+    DEBUG = False
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -57,8 +57,8 @@ if ENV_ROLE == "development":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog',
-            'USER': 'postgres',
+            'NAME': '',
+            'USER': '',
             'PASSWORD': BLOG_DB_PASS,
             'HOST': 'localhost',
             'PORT': '5432',
@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     "blog",
     "cloudinary",
 ]
@@ -90,6 +91,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.MyMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -105,6 +107,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -152,6 +155,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

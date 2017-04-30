@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from . import views
 from views import PostListView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     url(r"^$", PostListView.as_view(), name="post_list"),
@@ -16,6 +19,9 @@ urlpatterns = [
     url(r"^accounts/signup/$", views.sign_up, name="sign_up"),
     url(r"^accounts/success/$", views.success, name="success"),
     url(r"^contact/$", views.contact_us, name="contact_us"),
+    url(r"^search/$", views.search, name="search"),
 
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

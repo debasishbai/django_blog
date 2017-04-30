@@ -31,3 +31,10 @@ blog/migrations/0006_post_caption.pyc
 blog/migrations/0007_remove_post_image_name.pyc
 blog/migrations/0008_post_image_name.pyc
 news/news/spiders/Logs/
+blog/database_config.pyc
+blog/deploy.pyc
+blog/middleware.pyc
+blog/migrations/0002_post_user_image.pyc
+blog/migrations/0003_auto_20170426_1331.pyc
+blog/migrations/0004_auto_20170430_1515.pyc
+media/

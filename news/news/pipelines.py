@@ -37,9 +37,9 @@ class NewsPipeline(object):
             logging.warning("********Article Does Not Contain any Caption********")
             logging.info("********Adding Title as Caption********")
 
-        if not (item.get("title") or item.get("story")):
-            logging.warning("*******Missing Either Title or Story in %s********" % item)
-            raise DropItem("******Skipping this Article . . . . .******")
+        if not (item.get("title") or item.get("story") or item.get("image")):
+            logging.warning("*******Missing one of Title, Story or Image in %s********" % item)
+            raise DropItem("******Skipping this Article . . . . .*******")
 
         check_for_duplicates = self.check_dupes(item)
 
@@ -51,6 +51,8 @@ class NewsPipeline(object):
             clean_story = self.strip_story(item["story"])
             item["story"] = clean_story
             item["images"][0]["path"] = item["images"][0]["path"].split("/")[1]
+            # clean_image = self.strip_images(item["files"][0]["path"])
+            # item["files"][0]["path"] = clean_image
             save_item = self.save_to_database(item)
             return save_item
 

@@ -105,15 +105,19 @@ CLOUD_API_SECRET = get_env_variable("CLOUD_API_SECRET")
 
 
 if ENV_ROLE == "development":
-    IMAGES_STORE = "/path/to/store/images"
+    # FILES_STORE = "/home/debasish/heroku_apps/debasishbai/blog/static/images"
+    IMAGES_STORE = '/home/debasish/heroku_apps/debasishbai/blog/static/images'
 
+# IMAGES_THUMBS = {
+#     "small": (150, 112.5)
+# }
 
 if ENV_ROLE == "production":
     try:
-        os.makedirs("/path/to/store/images")
+        os.makedirs("/app/blog/static/images")
     except Exception:
         pass
-    IMAGES_STORE = "/path/to/store/images"
+    IMAGES_STORE = "/app/blog/static/images"
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)

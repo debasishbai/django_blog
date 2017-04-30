@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>New Post</h1>
-    <form method="POST" action="{% url 'post_new' %}">
+    <form method="POST" action="{% url 'post_new' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <table class="table">
             <tr>
@@ -15,8 +15,12 @@
                 <td>{{ form.text }}</td>
             </tr>
             <tr>
+                <td><strong>Upload Image:</strong></td>
+                <td>{{ form.user_image }}</td>
+            </tr>
+            <tr>
                 <td></td>
-                <td><p style="position:relative; top:10px;"><input type="submit" value="Submit" class="btn btn-default"></p></td>
+                <td><p style="position:relative; top:20px;"><input type="submit" value="Submit" class="btn btn-default"></p></td>
             </tr>
         </table>
     </form>

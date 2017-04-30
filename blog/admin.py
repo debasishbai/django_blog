@@ -1,7 +1,10 @@
 from django.contrib import admin
 from .models import Post, Comment
 
-# Register your models here.
 
-admin.site.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "published_date", "author")
+    list_filter = ("published_date", "creation_date")
+
+admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)

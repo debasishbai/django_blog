@@ -25,21 +25,37 @@
 		"start_urls": "http://www.ndtv.com/latest?pfrom=home-topnavigation",
 		"response_css": "#ins_storylist > ul > li:nth-child(n) > div.new_storylising_img",
 		"url": "a::attr(href)",
-		"page": "body > div:nth-child(5) > div.newcont1 > div > div.ins_wid990 > div.ins_lftcont640.clr > div.ins_left_rhs > div > div.new_pagination > a::attr(href)",
+		"page": "body > div:nth-child(6) > div.newcont1 > div > div.ins_wid990 > div.ins_lftcont640.clr > div.ins_left_rhs > div > div.new_pagination > a::attr(href)",
 		"profit_title": "#newsDescriptionContainer > div > span > div.ins_headline > h1::text",
 		"profit_image": "#newsDescriptionContainer > div > span > div.ins_lhs_rhs > div.ins_left_rhs > div.ins_mainimage_big.story_pic > div > div > img::attr(src)",
 		"profit_caption": "#story_pic > div.ins_mainimage_caption::text",
 		"profit_story": "#newsDescriptionContainer > div > span > div.ins_lhs_rhs > div.ins_left_rhs > span > div.pdl200",
-		"gadgets_title": ["body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.lead_heading > h1 > span::text", "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.lead_heading > h1 > span::text"],
-		"gadgets_image": ["body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.gad_smallimage_cont > img::attr(src)", "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.fullstoryImage > img::attr(src)", "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.img_highlight > div.gad_smallimage_cont > img::attr(src)", "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.fullstoryImage > img::attr(src)", "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.img_highlight > div.gad_smallimage_cont > img::attr(src)", "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.gad_smallimage_cont > img::attr(src)"],
+		"gadgets_title": {
+			"title1": "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.lead_heading > h1 > span::text",
+            "title2": "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.lead_heading > h1 > span::text"
+        },
+		"gadgets_image": {
+          "image1": "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.gad_smallimage_cont > img::attr(src)",
+          "image2": "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.fullstoryImage > img::attr(src)",
+          "image3": "body > div.wrapper > div:nth-child(4) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.img_highlight > div.gad_smallimage_cont > img::attr(src)",
+          "image4": "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.fullstoryImage > img::attr(src)",
+          "image5": "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.img_highlight > div.gad_smallimage_cont > img::attr(src)",
+          "image6": "body > div.wrapper > div:nth-child(3) > div > div.rhs > div.content_section > div.content_block.white_bg.row.margin_b30 > div.story_detail.row.margin_b20 > div.gad_smallimage_cont > img::attr(src)"
+        },
 		"gadgets_story": "#center_content_div > div > p",
 		"sports_title": "#container > div.mainbody > div > div.col-8 > div > div:nth-child(2) > div > div.lft-top-cntr-1-module.module > div > div > div.mod-header > div > div.post-title > h1::text",
 		"sports_image": "#container > div.mainbody > div > div.col-8 > div > div:nth-child(2) > div > div.lft-top-cntr-1-module.module > div > div > div.mod-body > div > div > div.article-detail.col-sm-12.col-md-9.col-md-push-3.mrt0 > div > div.col-12.stry-top > div.stry-ft-img > img::attr(src)",
 		"sports_caption": "#container > div.mainbody > div > div.col-8 > div > div:nth-child(2) > div > div.lft-top-cntr-1-module.module > div > div > div.mod-body > div > div > div.article-detail.col-sm-12.col-md-9.col-md-push-3.mrt0 > div > div.col-12.stry-top > div.photo-crtsy > span:nth-child(1)::text",
 		"sports_story": "#container > div.mainbody > div > div.col-8 > div > div:nth-child(2) > div > div.lft-top-cntr-1-module.module > div > div > div.mod-body > div > div > div.article-detail.col-sm-12.col-md-9.col-md-push-3.mrt0 > div > div:nth-child(3) > p",
 		"ndtv_title": "#newsDescriptionContainer > div.ins_headline > h1::text",
-		"ndtv_image": "#newsDescriptionContainer > div.ins_left_rhs > div.ins_mainimage_big.story_pic > img::attr(src)",
-		"ndtv_caption": "#newsDescriptionContainer > div.ins_left_rhs > div.ins_mainimage_big.story_pic > p::text",
+		"ndtv_image": {
+			"image1": "#newsDescriptionContainer > div.ins_left_rhs > div.ins_mainimage_big.story_pic > img::attr(src)",
+		    "image2": "#ins_storybody > div.ins_mainimage_big.story_pic > img::attr(src)"
+		},
+		"ndtv_caption": {
+			"caption1": "#newsDescriptionContainer > div.ins_left_rhs > div.ins_mainimage_big.story_pic > p::text",
+			"caption2": "#ins_storybody > div.ins_mainimage_big.story_pic > p::text"
+		},
 		"ndtv_story": "#ins_storybody"
 	}
 }

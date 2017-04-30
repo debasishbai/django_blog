@@ -7,10 +7,14 @@ from django.dispatch import receiver
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import ListView
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, SignUpForm, ContactUsForm
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from .deploy import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 
 class PostListView(ListView):
@@ -19,6 +23,19 @@ class PostListView(ListView):
     context_object_name = "posts"
     paginate_by = 12
     queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by("-published_date")
+
+
+def search(request):
+    get_query = request.GET.get("q")
+    print get_query
+    if get_query:
+        vector = SearchVector("title") + SearchVector("text")
+        query = SearchQuery(get_query)
+        posts = Post.objects.annotate(search=vector).filter(search=query)
+    else:
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by("-published_date")
+
+    return render(request, "blog/post_list.html", {"posts": posts})
 
 
 def post_detail(request, pk):
@@ -30,10 +47,10 @@ def post_detail(request, pk):
 def post_draft_list(request):
     user = request.user
     if user.is_staff:
-        posts = Post.objects.filter(published_date__isnull=True).order_by("creation_date")
+        posts = Post.objects.filter(published_date__isnull=True).order_by("-creation_date")
         return render(request, "blog/post_draft_list.html", {"posts": posts})
     else:
-        posts = Post.objects.filter(published_date__isnull=True, author=user).order_by("creation_date")
+        posts = Post.objects.filter(published_date__isnull=True, author=user).order_by("-creation_date")
         return render(request, "blog/post_draft_list.html", {"posts": posts})
 
 
@@ -55,7 +72,7 @@ def post_remove(request, pk):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -71,14 +88,27 @@ def post_edit(request, pk):
 def post_new(request):
 
     if request.method == "POST":
-        form = PostForm(request.POST)
-
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            config()
             post = form.save(commit=False)
             post.author = request.user
-            # Disabling the published date so that all the new posts will not get published unless approved.
-            # post.published_date = timezone.now()
+
+            _user = str(request.user)
+            _email = str(request.user.email)
+            _admin = User.objects.values_list("email").get(is_superuser=True)
             post.save()
+            if not request.user.is_superuser:
+                subject = "New Post Request"
+                body = "Review this post on Django Boys Blog by " + _user
+                message = EmailMultiAlternatives(subject=subject,body=body,to=_admin,from_email=(_user,_email))
+                message.send(fail_silently=False)
+
+            if post.user_image:
+                print "Image:", post.user_image
+                cloudinary.uploader.upload(post.user_image, public_id=str(post.user_image))
+                print "Image Uploaded!"
+
             return redirect("post_detail", pk=post.pk)
     else:
         form = PostForm()

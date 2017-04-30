@@ -20,14 +20,6 @@ class NewsSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        # for headlines in response.css(self.site_name["response_css"]):
-        #     title = headlines.css("a::attr(title)").extract_first()
-        #     url = headlines.css(self.site_name["url"]).extract_first()
-        #     thumbnail = headlines.css("a > img::attr(src)").extract_first()
-        #     print "HeadLines: ", title
-        #     print "URL: ", url
-        #     print "Thumbnail: ", thumbnail
-        #     print
         for move_to_story in response.css(self.site_name["response_css"]):
             page_to_scrape = move_to_story.css(self.site_name["url"]).extract_first()
             filter_links = re.match(r".*//.*?/(\w+)", page_to_scrape).groups()[0]
@@ -58,16 +50,18 @@ class NewsSpider(scrapy.Spider):
 
     def www(self, item, response):
         item['title'] = response.css(self.site_name["ndtv_title"]).extract_first()
-        item['image'] = response.css(self.site_name["ndtv_image"]).extract_first()
-        item['caption'] = response.css(self.site_name["ndtv_caption"]).extract_first()
+        image_scopes = self.site_name["ndtv_image"].values()
+        item['image'] = self.search(response, image_scopes)
+        caption_scopes = self.site_name["ndtv_caption"].values()
+        item['caption'] = self.search(response, caption_scopes)
         raw_story = response.css(self.site_name["ndtv_story"])
         item["story"] = self.strip_story(raw_story)
         return item
 
     def gadgets(self, item, response):
-        title_scopes = self.site_name["gadgets_title"]
+        title_scopes = self.site_name["gadgets_title"].values()
         item['title'] = self.search(response, title_scopes)
-        image_scopes = self.site_name["gadgets_image"]
+        image_scopes = self.site_name["gadgets_image"].values()
         item["image"] = self.search(response, image_scopes)
         raw_story = response.css(self.site_name["gadgets_story"])
         item["story"] = self.strip_story(raw_story)
@@ -97,7 +91,8 @@ class NewsSpider(scrapy.Spider):
             story += "".join(args[0])
         return story
 
-    def search(self, response, scopes):
+    @staticmethod
+    def search(response, scopes):
         count = 0
         while count < len(scopes):
             data = response.css(scopes[count]).extract_first()

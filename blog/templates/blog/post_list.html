@@ -7,9 +7,16 @@
         {% for post in posts %}
         <li class="list-group-item">
         <div class="col-xs-6 col-md-4">
+
             {% if post.image_name %}
             <a href="{% url 'post_detail' pk=post.pk %}" class="thumbnail">
                 <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.image_name }}.jpg" width=200px height=103px alt="Image"/>
+            </a>
+            {% endif %}
+
+            {% if post.user_image %}
+            <a href="{% url 'post_detail' pk=post.pk %}" class="thumbnail">
+                <img src="https://res.cloudinary.com/debasishbai/image/upload/{{ post.user_image }}.jpg" width=200px height=103px alt="{{ post.user_image }}">
             </a>
             {% endif %}
          </div>
@@ -22,8 +29,10 @@
                 <p>Posted by: <strong><i>{{ post.author }}</i></strong> on {{ post.published_date|date:'F d, Y' }}</p>
             </div>
         </div>
-        {% endfor %}
+        {% empty %}
+        <h1>No Post Found</h1>
         </li>
+        {% endfor %}
     </ul>
 
 
@@ -53,6 +62,5 @@
         </ul>
     </div>
 {% endif %}
-
 
 {% endblock %}

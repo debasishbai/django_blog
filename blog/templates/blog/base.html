@@ -17,22 +17,94 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
 </head>
-    <body>
+
+    <body class="full">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    <a class="navbar-brand" href="/">Django Boys Blog</a>
+                </div>
+
+            <!-- Nav Search Bar -->
+                <div style="padding-top:10px;" class="col-sm-5 col-sm-offset-2">
+                     <form method="GET" action="{% url 'search' %}">
+                        <div class="input-group stylish-input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                     </form>
+                </div>
+
+                <div style="float:right;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    {% if user.is_authenticated %}
+                    <div class="dropdown" style="padding-top:10px;padding-right:45px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        Hello {{ request.user.username }}!
+                    <span class="caret"></span>
+                    </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'post_new' %}">Add Post</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'post_draft_list' %}">Post Status</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'password_reset' %}">Password Reset</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'logout_then_login' %}">Log Out</a></li>
+                        </ul>
+                    </div>
+
+                    {% else %}
+                    <p style="float:left;font-size:17px; color:white; padding-top:17px;">Hello Guest!</p>&nbsp;&nbsp;
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-default navbar-btn">Sign in</button></a>&nbsp;&nbsp;
+                    <a href="{% url 'sign_up' %}"><button type="button" class="btn btn-default navbar-btn">Register</button></a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </nav>
 
         <div class="page-header">
             {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}" class="top-menu" ><span class="glyphicon glyphicon-plus" title="Add New Post"></span></a>
                 <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit" title="Drafts"></span></a>
-                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" style="color:#ffffff;">Logout</a>)</small></p>
+                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout_then_login' %}" style="color:#ffffff;">Logout</a>)</small></p>
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu">Login <span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
             <h1><a href="/" title="Home">Django Boys Blog</a></h1>
+
+            <!--Header Search Bar-->
+            <form method="GET" action="{% url 'search' %}">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <div class="input-group stylish-input-group">
+                            <input name="q" type="text" class="form-control" placeholder="Search ...">
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <a href="{% url 'contact_us' %}" class="base-menu" > Contact Us</a>
             <a href="{% url 'post_list' %}" class="base-menu" > Home </a>
         </div>
+
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -42,19 +114,27 @@
             </div>
         </div>
 
+
         <div class="footer">
             <div class="container">
                 <hr>
                     <div class="text-center center-block" style="background-color: #C5C9C5;" >
                         <a href="https://github.com/debasishbai" target="_blank"><i id="social-gt" class="fa fa-github-square fa-3x social"></i></a>
-                        <a href="mailto:bai.debasish123@gmail.com" target="_blank"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+                        <a href="mailto:bai.debasish123@gmail.com" ><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+                        <a href="https://plus.google.com/+DebasishBai123" target="_blank"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
                         <a href="https://www.facebook.com/" target="_blank"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
-	                    <a href="https://plus.google.com/+DebasishBai123" target="_blank"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
                         <p class="text-muted" style="font-size:13px;">&copy; 2017 Debasish Bai </p>
                     </div>
                 <hr>
             </div>
         </div>
+
+        <!-- jQuery -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Appear Disappear navbar -->
+        <script src="{% static 'js/navbar.js' %}"></script>
 
     </body>
 </html>
